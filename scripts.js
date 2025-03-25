@@ -99,10 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="frustrated-user" style="bottom: 10px; width: 80px; height: 80px; z-index: 100;">
-                        <i class="fas fa-frown"></i>
-                    </div>
                 </div>
                 <style>
                     .scene1 .line1 { background: transparent; animation: highlight1 12s infinite; }
@@ -560,12 +556,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset the auto-advance timer to start from this scene
             clearInterval(autoAdvanceTimer);
             startAutoAdvance();
-            
-            // Make sure the restart button shows the pause state
-            const restartBtn = document.querySelector('.restart-auto');
-            if (restartBtn) {
-                restartBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
-            }
         });
     });
 
@@ -594,38 +584,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial timer based on the current scene
         const initialDuration = 8000;
         autoAdvanceTimer = setTimeout(advanceScene, initialDuration);
-        
-        // Update button text if it exists
-        const restartBtn = document.querySelector('.restart-auto');
-        if (restartBtn) {
-            restartBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
-        }
     }
-
-    // Create and add auto-play control button
-    const demoSection = document.querySelector('#demo');
-    const restartButton = document.createElement('button');
-    restartButton.className = 'restart-auto';
-    restartButton.innerHTML = '<i class="fas fa-pause"></i> Pause';
-    
-    restartButton.addEventListener('click', function() {
-        if (autoAdvanceTimer) {
-            // If auto-play is active, stop it
-            clearTimeout(autoAdvanceTimer);
-            autoAdvanceTimer = null;
-            this.innerHTML = '<i class="fas fa-play"></i> Auto Play';
-        } else {
-            // If auto-play is not active, start it
-            startAutoAdvance();
-            this.innerHTML = '<i class="fas fa-pause"></i> Pause';
-        }
-    });
-    
-    // Add the button to the scene display
-    demoSection.querySelector('.scene-display').appendChild(restartButton);
-    
-    // Start auto-advance initially
-    startAutoAdvance();
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

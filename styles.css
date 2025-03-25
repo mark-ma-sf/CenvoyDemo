@@ -73,8 +73,8 @@ nav ul li a:hover {
 /* Hero Section */
 .hero {
     padding: 6rem 0;
-    background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
-    color: white;
+    background-color: var(--light-color);
+    color: var(--dark-color);
     text-align: center;
 }
 
@@ -105,8 +105,8 @@ nav ul li a:hover {
 }
 
 .btn.secondary {
-    border: 2px solid white;
-    color: white;
+    border: 2px solid var(--dark-color);
+    color: var(--dark-color);
 }
 
 .btn.primary:hover {
@@ -121,15 +121,15 @@ nav ul li a:hover {
 
 /* Demo Section */
 .demo {
-    padding: 5rem 0;
-    background-color: var(--dark-color);
+    padding: 3rem 0 5rem;
+    background-color: var(--light-color);
 }
 
-.demo h2, .features h2, .download h2 {
+.features h2, .download h2 {
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 3rem;
-    color: white;
+    color: var(--dark-color);
 }
 
 .scene-container {
@@ -137,16 +137,17 @@ nav ul li a:hover {
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     border-radius: 0;
     overflow: hidden;
+    background-color: var(--light-color);
 }
 
 .scene-display {
     position: relative;
     width: 100%;
-    background-color: var(--dark-color);
-    color: white;
+    background-color: var(--light-color);
+    color: var(--dark-color);
 }
 
 .scene-animation {
@@ -158,75 +159,76 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
     min-height: 80vh;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: var(--light-color);
+    border-bottom: none;
 }
 
 .scene-narration {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--light-color);
+    padding: 2rem;
+    border-bottom: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .scene-narration p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: center;
-    font-style: italic;
+    font-style: normal;
+    font-weight: 300;
     min-height: 3rem;
     max-width: 1000px;
     margin: 0 auto;
+    color: var(--dark-color);
+    text-shadow: none;
+    letter-spacing: 0.02em;
 }
 
 .scene-selector {
     display: flex;
     flex-wrap: wrap;
-    background-color: rgba(0, 0, 0, 0.5);
-    gap: 0.5rem;
-    padding: 1.5rem;
+    background-color: var(--light-color);
+    gap: 0.7rem;
+    padding: 2rem;
     justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .scene {
     flex: 1 0 22%;
     max-width: 220px;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.8rem 1.2rem;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     cursor: pointer;
-    transition: all 0.3s;
-    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.4s ease;
+    color: var(--dark-color);
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .scene:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    background-color: rgba(44, 44, 66, 0.9);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .scene.active {
-    background-color: var(--primary-color);
+    background-color: rgba(74, 99, 238, 0.25);
     color: white;
-    border-color: var(--primary-color);
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(74, 99, 238, 0.3);
+    box-shadow: 0 8px 20px rgba(74, 99, 238, 0.2), 0 0 15px rgba(74, 99, 238, 0.1);
+    border: 1px solid rgba(74, 99, 238, 0.3);
 }
 
 .scene-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    background-color: currentColor;
-    color: var(--dark-color);
-    border-radius: 50%;
-    font-weight: 600;
-    font-size: 0.8rem;
+    display: none;
 }
 
 .scene-title {
@@ -238,6 +240,7 @@ nav ul li a:hover {
 .features {
     padding: 5rem 0;
     background-color: var(--light-color);
+    border-top: none;
 }
 
 .feature-grid {
@@ -275,8 +278,12 @@ nav ul li a:hover {
 /* Download Section */
 .download {
     padding: 5rem 0;
-    background-color: white;
+    background-color: var(--light-color);
     text-align: center;
+}
+
+.download .browser-btn {
+    color: var(--dark-color);
 }
 
 .browser-buttons {
@@ -314,8 +321,8 @@ nav ul li a:hover {
 
 /* Footer */
 footer {
-    background-color: var(--dark-color);
-    color: white;
+    background-color: var(--light-color);
+    color: var(--dark-color);
     padding: 3rem 0;
     text-align: center;
 }
@@ -328,7 +335,7 @@ footer .container {
 }
 
 footer .logo {
-    color: white;
+    color: var(--primary-color);
 }
 
 .social-links {
@@ -343,7 +350,7 @@ footer .logo {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
 }
 
@@ -686,38 +693,6 @@ footer .logo {
 
 .scene-animation > div.active {
     opacity: 1;
-}
-
-/* Auto-play control button */
-.restart-auto {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    padding: 8px 16px;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    z-index: 10;
-    font-family: var(--font-main);
-    font-size: 0.9rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-.restart-auto:hover {
-    background-color: #3a51cc;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.restart-auto i {
-    font-size: 0.8rem;
 }
 
 /* Responsive Styles */
