@@ -507,21 +507,40 @@ footer .logo {
 
 .scene2 .cenvoy-window {
     position: absolute;
-    width: 300px;
-    height: 350px;
-    top: 25%;
-    right: 5%;
-    background-color: white;
-    border-radius: 8px;
+    width: 600px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     opacity: 0;
-    transform: translateX(50px);
     transition: all 0.5s ease-out;
 }
 
 .scene2 .cenvoy-window.active {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate(-50%, -50%);
+}
+
+/* Add animations for the chat bubbles */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scene2 .cenvoy-window .chat-bubble {
+    animation: fadeInUp 0.3s forwards;
 }
 
 /* Scene 3: Customized Prompt Templates */

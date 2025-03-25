@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
             narration: "Tired of juggling tabs just to ask AI a question? It's time-consuming and breaks your flow.",
             animationHtml: `
                 <div class="scene1">
-                    <div class="browser-window" style="width: 90%; height: 65%; left: 5%; top: 5%; background-color: white; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); overflow: hidden; position: absolute;">
+                    <div class="browser-window" style="width: 90%; height: 80%; left: 5%; top: 5%; background-color: white; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); overflow: hidden; position: absolute;">
                         <div style="height: 32px; background-color: #f3f3f3; border-radius: 4px 4px 0 0; display: flex; align-items: center; padding: 0 10px;">
                             <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ff6056; margin-right: 5px;"></div>
                             <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ffbd2e; margin-right: 5px;"></div>
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             narration: "Meet Cenvoy—the browser extension that brings AI right where you work. No extra tabs, no lost focus.",
             animationHtml: `
                 <div class="scene2">
-                    <div class="browser-window" style="width: 90%; height: 65%; left: 5%; top: 5%; background-color: white; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); overflow: hidden; position: absolute;">
+                    <div class="browser-window" style="width: 90%; height: 80%; left: 5%; top: 5%; background-color: white; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); overflow: hidden; position: absolute;">
                         <div style="height: 32px; background-color: #f3f3f3; border-radius: 4px 4px 0 0; display: flex; align-items: center; padding: 0 10px;">
                             <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ff6056; margin-right: 5px;"></div>
                             <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ffbd2e; margin-right: 5px;"></div>
@@ -206,16 +206,65 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                     
-                    <div class="cenvoy-window" style="position: absolute; width: 300px; height: 350px; top: 20%; right: 5%; background-color: white; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        <div style="padding: 1rem; height: 100%;">
-                            <div style="height: 10%; background-color: var(--primary-color); border-radius: 4px; display: flex; align-items: center; padding: 0 1rem; color: white;">
-                                <span>Cenvoy AI Assistant</span>
+                    <div class="cenvoy-window" style="position: absolute; width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.7); border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.3); overflow: hidden;">
+                        <div style="padding: 1rem; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 40px; background-color: var(--primary-color); border-radius: 8px; display: flex; align-items: center; padding: 0 1rem; color: white; margin-bottom: 1rem;">
+                                <span style="font-weight: 500;">Cenvoy AI Assistant</span>
+                                <div style="margin-left: auto; display: flex; gap: 10px;">
+                                    <i class="fas fa-cog" style="font-size: 14px; opacity: 0.8;"></i>
+                                    <i class="fas fa-times" style="font-size: 14px; opacity: 0.8;"></i>
+                                </div>
                             </div>
-                            <div style="height: 80%; margin-top: 1rem; background-color: var(--light-color); border-radius: 4px; padding: 1rem;">
-                                <div style="height: 5%; width: 90%; background-color: #ddd; border-radius: 4px; margin-bottom: 0.5rem;"></div>
-                                <div style="height: 5%; width: 80%; background-color: #ddd; border-radius: 4px; margin-bottom: 0.5rem;"></div>
-                                <div style="height: 5%; width: 85%; background-color: #ddd; border-radius: 4px; margin-bottom: 0.5rem;"></div>
-                                <div style="height: 5%; width: 70%; background-color: #ddd; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+                            <div style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.5); border-radius: 8px; padding: 1.5rem; overflow-y: auto; border: 1px solid rgba(0, 0, 0, 0.05);">
+                                <div style="display: flex; margin-bottom: 1.5rem;">
+                                    <div style="width: 32px; height: 32px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-robot" style="font-size: 14px;"></i>
+                                    </div>
+                                    <div style="background-color: rgba(255, 255, 255, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.6; color: #000;">
+                                        <p style="margin: 0 0 15px 0; color: #000;">Melatonin is a naturally produced hormone that regulates sleep-wake cycles. It's widely used as a supplement for mild insomnia, jet lag, or shift work.</p>
+                                        
+                                        <div style="margin-bottom: 15px;">
+                                            <strong style="color: var(--primary-color);">Pros:</strong>
+                                            <ul style="margin: 8px 0 0 20px; padding: 0; color: #000;">
+                                                <li>May help reset disrupted sleep rhythms</li>
+                                                <li>Less habit-forming than prescription sleep aids</li>
+                                                <li>Often easy to find</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div style="margin-bottom: 15px;">
+                                            <strong style="color: var(--primary-color);">Cons:</strong>
+                                            <ul style="margin: 8px 0 0 20px; padding: 0; color: #000;">
+                                                <li>May not address underlying anxiety or severe sleep disorders</li>
+                                                <li>Can cause daytime grogginess</li>
+                                                <li>Effectiveness varies</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div style="margin-bottom: 15px;">
+                                            <strong style="color: var(--primary-color);">Side Effects:</strong>
+                                            <p style="margin: 8px 0 0 0; color: #000;">Headaches, dizziness, vivid dreams, possible interactions with other meds.</p>
+                                        </div>
+                                        
+                                        <div style="margin-bottom: 15px;">
+                                            <strong style="color: var(--primary-color);">Alternatives:</strong>
+                                            <ul style="margin: 8px 0 0 20px; padding: 0; color: #000;">
+                                                <li>Good sleep hygiene (consistent bedtime, avoiding screens before bed)</li>
+                                                <li>Cognitive Behavioral Therapy for Insomnia (CBT-I)</li>
+                                                <li>Relaxation techniques (mindfulness, yoga, meditation)</li>
+                                                <li>Addressing anxiety (therapy, stress management, lifestyle changes)</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <p style="margin: 15px 0 0 0; font-style: italic; color: #000;">If anxiety is your main issue, melatonin alone might not resolve your sleep problems. Always check with a healthcare provider for personalized advice.</p>
+                                    </div>
+                                </div>
+                                <div style="position: relative;">
+                                    <input type="text" placeholder="Ask a follow-up question..." style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.1); background-color: white; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem;">
+                                    <button style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background-color: var(--primary-color); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-arrow-up" style="font-size: 12px;"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
