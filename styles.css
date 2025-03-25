@@ -578,6 +578,20 @@ footer .logo {
     position: relative;
 }
 
+.scene4 .template-page {
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    left: 5%;
+    top: 5%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
 .scene4 .simple-prompt {
     position: absolute;
     width: 90%;
