@@ -711,28 +711,28 @@ Make sure the output is concise and directly reflects any key points from the pr
         }
     }
 
-    // Make sceneData globally available
+    // Add sceneData globally available
     window.sceneData = sceneData;
 
-    // Add click event listeners to scene selectors
-    document.querySelectorAll('.scene').forEach(scene => {
-        scene.addEventListener('click', function() {
-            const sceneId = this.getAttribute('data-scene');
-            showScene(sceneId);
-            
-            // Update current scene
-            currentScene = parseInt(sceneId);
-            
-            // Reset the auto-advance timer to start from this scene
-            clearInterval(autoAdvanceTimer);
-            startAutoAdvance();
-        });
-    });
+    // Remove click event listeners for scenes - make non-interactive
+    // document.querySelectorAll('.scene').forEach(scene => {
+    //     scene.addEventListener('click', function() {
+    //         const sceneId = this.getAttribute('data-scene');
+    //         showScene(sceneId);
+    //         
+    //         // Update current scene
+    //         currentScene = parseInt(sceneId);
+    //         
+    //         // Reset the auto-advance timer to start from this scene
+    //         clearInterval(autoAdvanceTimer);
+    //         startAutoAdvance();
+    //     });
+    // });
 
     // Show initial scene
     showScene("7");
 
-    // Auto-advance scenes every 8 seconds if not interacted with
+    // Auto-advance scenes every 8 seconds
     let currentScene = 7;
     let autoAdvanceTimer;
 
@@ -799,14 +799,48 @@ Make sure the output is concise and directly reflects any key points from the pr
         });
     }
 
-    // Update the showScene function to use our new animation function
+    // Make all interactive elements in animations non-interactive
+    function disableInteractions() {
+        // Find all potentially interactive elements
+        const interactiveElements = document.querySelectorAll(
+            '.scene-animation button, .scene-animation input, .scene-animation textarea, ' +
+            '.scene-animation a, .scene-animation [onclick], .scene-animation [onkeydown], ' +
+            '.scene-animation [onmousedown], .scene-animation .browser-btn, .scene-animation [role="button"]'
+        );
+        
+        // Disable each element
+        interactiveElements.forEach(element => {
+            element.disabled = true;
+            element.setAttribute('tabindex', '-1');
+            element.style.pointerEvents = 'none';
+        });
+    }
+
+    // Apply interaction disabling after showing any scene
     const originalShowScene = showScene;
     showScene = function(sceneId) {
         originalShowScene(sceneId);
+        
+        // Disable interactions after scene is shown
+        setTimeout(disableInteractions, 100);
         
         // If it's scene 6, use our enhanced animation
         if (sceneId === "6") {
             animateScene6Cards();
         }
     };
+
+    // Also disable interactions initially
+    setTimeout(disableInteractions, 100);
+    
+    // Prevent scrolling within scene elements
+    document.querySelectorAll('.scene-animation, .scene-animation *[style*="overflow"]').forEach(element => {
+        element.style.overflow = 'hidden';
+    });
+    
+    // Disable right-click within animations
+    document.querySelector('.scene-animation').addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
 }); 

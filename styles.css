@@ -780,4 +780,57 @@ footer .logo {
         flex: 1 0 100%;
         max-width: 100%;
     }
+}
+
+/* Disable all user interaction within scenes */
+.scene-animation,
+.scene-animation *,
+.scene-selector,
+.scene-selector * {
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* Disable scrolling within scene elements */
+.scene-animation {
+    overflow: hidden !important;
+}
+
+.scene-animation div[style*="overflow"] {
+    overflow: hidden !important;
+}
+
+/* Make buttons and interactive elements appear non-interactive */
+.scene-animation button,
+.scene-animation input,
+.scene-animation textarea,
+.scene-animation .browser-btn,
+.scene-animation a {
+    cursor: default !important;
+    pointer-events: none !important;
+}
+
+/* Remove hover effects that might suggest interactivity */
+.scene:hover,
+.browser-btn:hover,
+.feature-card:hover,
+.btn:hover,
+.scenario-card:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+    background-color: inherit !important;
+    border-color: inherit !important;
+}
+
+/* Make scene selector non-interactive but still visible */
+.non-interactive {
+    pointer-events: none !important;
+}
+
+.non-interactive * {
+    cursor: default !important;
+    pointer-events: none !important;
 } 
