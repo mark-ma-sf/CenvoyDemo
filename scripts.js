@@ -46,12 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div style="padding: 0.3rem 0.5rem;">View history</div>
                                 </div>
                                 <p style="font-style: italic; color: #666; font-size: 0.9rem;">From Wikipedia, the free encyclopedia</p>
-                                <p style="margin-top: 1rem; color: #333;">Not to be confused with <span style="color: #0645ad;">melanin</span>. For the video game see <span style="color: #0645ad;">Melatonin (video game)</span></p>
-                                <p style="margin-top: 0.5rem; color: #333;">This article is about melatonin as a hormone. For its role as a supplement and medication, see <span style="color: #0645ad;">Melatonin as a medication and supplement</span>.</p>
+                                <p style="margin-top: 1rem; padding: 1rem; border-radius: 4px; background-color: rgba(63, 219, 171, 0.3); animation: highlight 2s infinite; color: #333;"><b>Melatonin</b>, an <span style="color: #0645ad;">indoleamine</span>, is a <span style="color: #0645ad;">natural compound</span> produced by various <span style="color: #0645ad;">organisms</span>, including <span style="color: #0645ad;">bacteria</span> and <span style="color: #0645ad;">eukaryotes</span>.<sup style="color: #0645ad;">[1]</sup> Its discovery in 1958 by <span style="color: #0645ad;">Aaron B. Lerner</span> and colleagues stemmed from the isolation of a substance from the <span style="color: #0645ad;">pineal gland</span> of cows that could induce skin lightening in <span style="color: #0645ad;">common frogs</span>. This compound was later identified as a hormone secreted in the brain during the night, playing a crucial role in regulating the sleep-wake cycle, also known as the <span style="color: #0645ad;">circadian rhythm</span>, in vertebrates.<sup style="color: #0645ad;">[2][3]</sup></p>
                                 
-                                <p style="margin-top: 1rem; font-weight: bold; color: #333;" class="line1">Melatonin</span>, an <span style="color: #0645ad;">indoleamine</span>, is a <span style="color: #0645ad;">natural compound</span> produced by various <span style="color: #0645ad;">organisms</span>, including <span style="color: #0645ad;">bacteria</span> and <span style="color: #0645ad;">eukaryotes</span>. Its discovery in 1958 by <span style="color: #0645ad;">Aaron B. Lerner</span> and colleagues stemmed from the isolation of a substance from the <span style="color: #0645ad;">pineal gland</span> of cows that could induce <span style="color: #0645ad;">skin lightening</span> in <span style="color: #0645ad;">common frogs</span>.</p>
+                                <p style="margin-top: 1rem; color: #333;">In vertebrates, melatonin's functions extend to <span style="color: #0645ad;">synchronizing</span> sleep-wake cycles, encompassing sleep-wake timing and <span style="color: #0645ad;">blood pressure regulation</span>, as well as controlling seasonal rhythmicity <span style="color: #0645ad;">(circannual cycle)</span>, which includes reproduction, fattening, molting, and hibernation.<sup style="color: #0645ad;">[4]</sup> Its effects are mediated through the activation of <span style="color: #0645ad;">melatonin receptors</span> and its role as an <span style="color: #0645ad;">antioxidant</span>.<sup style="color: #0645ad;">[5][6][7]</sup> In plants and bacteria, melatonin primarily serves as a defense mechanism against <span style="color: #0645ad;">oxidative stress</span>, indicating its evolutionary significance.<sup style="color: #0645ad;">[8]</sup> The <span style="color: #0645ad;">mitochondria</span>, key organelles within cells, are the main producers of antioxidant melatonin,<sup style="color: #0645ad;">[9]</sup> underscoring the molecule's "ancient origins" and its fundamental role in protecting the earliest cells from reactive oxygen species.<sup style="color: #0645ad;">[10][11]</sup></p>
                                 
-                                <p style="margin-top: 0.5rem; color: #333;">In vertebrates, melatonin's functions extend to <span style="color: #0645ad;">synchronizing</span> sleep-wake cycles, encompassing sleep-wake timing and <span style="color: #0645ad;">blood pressure regulation</span>, as well as controlling seasonal rhythmicity (<span style="color: #0645ad;">circannual cycle</span>), which includes reproduction, fattening, molting, and hibernation.</p>
+                                <p style="margin-top: 1rem; color: #333;">In addition to its endogenous functions as a hormone and antioxidant, melatonin is also administered exogenously as a <span style="color: #0645ad;">dietary supplement</span> and medication. It is utilized in the treatment of <span style="color: #0645ad;">sleep disorders</span>, including <span style="color: #0645ad;">insomnia</span> and various <span style="color: #0645ad;">circadian rhythm sleep disorders</span>.</p>
                             </div>
                             
                             <div class="right-click-menu menu1" style="position: absolute; width: 120px; background-color: white; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); left: 32%; top: 52%; opacity: 0; animation: show-right-click1 12s infinite;">
@@ -160,15 +159,54 @@ document.addEventListener('DOMContentLoaded', function() {
             narration: "Meet Cenvoy—the browser extension that brings AI right where you work. No extra tabs, no lost focus.",
             animationHtml: `
                 <div class="scene2">
-                    <div class="browser-tab">
-                        <div style="padding: 1rem; height: 100%;">
-                            <div style="height: 8%; background-color: #eee; border-radius: 4px;"></div>
-                            <div style="height: 5%; margin-top: 1rem; width: 70%; background-color: #eee; border-radius: 4px;"></div>
-                            <div class="highlighted-text"></div>
-                            <div style="height: 30%; margin-top: 22%; background-color: #eee; border-radius: 4px;"></div>
+                    <div class="browser-window" style="width: 90%; height: 65%; left: 5%; top: 5%; background-color: white; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); overflow: hidden; position: absolute;">
+                        <div style="height: 32px; background-color: #f3f3f3; border-radius: 4px 4px 0 0; display: flex; align-items: center; padding: 0 10px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ff6056; margin-right: 5px;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ffbd2e; margin-right: 5px;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #27c93f; margin-right: 5px;"></div>
+                            <div style="flex-grow: 1; text-align: center; color: #666;">Web Browser</div>
+                        </div>
+                        
+                        <!-- Browser Tabs -->
+                        <div style="height: 36px; background-color: #e0e0e0; display: flex; align-items: center; padding: 0 10px; border-bottom: 1px solid #ccc;">
+                            <div class="browser-tab-header docs-tab" style="height: 30px; padding: 0 15px; background-color: white; border-radius: 5px 5px 0 0; margin-right: 10px; display: flex; align-items: center; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); font-size: 12px;">
+                                <span style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Melatonin - Wiki</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Wiki Content -->
+                        <div class="tab-content docs-content" style="height: calc(100% - 68px); overflow: auto; padding: 1rem;">
+                            <div style="margin-top: 0; padding: 1rem; background-color: white; border-radius: 0 0 4px 4px; border: 1px solid #eee; height: calc(100% - 2rem); overflow: auto;">
+                                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                    <div style="width: 50px; height: 50px; margin-right: 1rem;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="50" height="50">
+                                            <path d="M120 0H8C3.58 0 0 3.58 0 8v112c0 4.42 3.58 8 8 8h112c4.42 0 8-3.58 8-8V8c0-4.42-3.58-8-8-8z" fill="#fff"/>
+                                            <path d="M64 29.74c-19.38 0-35.1 15.72-35.1 35.1s15.72 35.1 35.1 35.1 35.1-15.72 35.1-35.1-15.72-35.1-35.1-35.1zm0 65.9c-17 0-30.8-13.8-30.8-30.8s13.8-30.8 30.8-30.8 30.8 13.8 30.8 30.8-13.8 30.8-30.8 30.8z" fill="#000"/>
+                                            <path d="M64 37.47c-15.1 0-27.37 12.27-27.37 27.37S48.9 92.2 64 92.2s27.37-12.27 27.37-27.37S79.1 37.47 64 37.47zm0 49.43c-12.18 0-22.06-9.88-22.06-22.06S51.82 42.78 64 42.78s22.06 9.88 22.06 22.06S76.18 86.9 64 86.9z" fill="#000"/>
+                                        </svg>
+                                    </div>
+                                    <h1 style="font-size: 2rem; margin: 0;">Melatonin</h1>
+                                </div>
+                                <div style="display: flex; margin-bottom: 1rem; font-size: 0.9rem; color: #666;">
+                                    <div style="margin-right: 1rem; padding: 0.3rem 0.5rem; background-color: #f8f9fa; border-radius: 3px;">Article</div>
+                                    <div style="margin-right: 1rem; padding: 0.3rem 0.5rem;">Talk</div>
+                                    <div style="flex-grow: 1;"></div>
+                                    <div style="margin-right: 1rem; padding: 0.3rem 0.5rem;">Read</div>
+                                    <div style="margin-right: 1rem; padding: 0.3rem 0.5rem;">Edit</div>
+                                    <div style="padding: 0.3rem 0.5rem;">View history</div>
+                                </div>
+                                <p style="font-style: italic; color: #666; font-size: 0.9rem;">From Wikipedia, the free encyclopedia</p>
+                                
+                                <p style="margin-top: 1rem; padding: 1rem; border-radius: 4px; background-color: rgba(63, 219, 171, 0.3); animation: highlight 2s infinite; color: #333;"><b>Melatonin</b>, an <span style="color: #0645ad;">indoleamine</span>, is a <span style="color: #0645ad;">natural compound</span> produced by various <span style="color: #0645ad;">organisms</span>, including <span style="color: #0645ad;">bacteria</span> and <span style="color: #0645ad;">eukaryotes</span>.<sup style="color: #0645ad;">[1]</sup> Its discovery in 1958 by <span style="color: #0645ad;">Aaron B. Lerner</span> and colleagues stemmed from the isolation of a substance from the <span style="color: #0645ad;">pineal gland</span> of cows that could induce skin lightening in <span style="color: #0645ad;">common frogs</span>. This compound was later identified as a hormone secreted in the brain during the night, playing a crucial role in regulating the sleep-wake cycle, also known as the <span style="color: #0645ad;">circadian rhythm</span>, in vertebrates.<sup style="color: #0645ad;">[2][3]</sup></p>
+                                
+                                <p style="margin-top: 1rem; color: #333;">In vertebrates, melatonin's functions extend to <span style="color: #0645ad;">synchronizing</span> sleep-wake cycles, encompassing sleep-wake timing and <span style="color: #0645ad;">blood pressure regulation</span>, as well as controlling seasonal rhythmicity <span style="color: #0645ad;">(circannual cycle)</span>, which includes reproduction, fattening, molting, and hibernation.<sup style="color: #0645ad;">[4]</sup> Its effects are mediated through the activation of <span style="color: #0645ad;">melatonin receptors</span> and its role as an <span style="color: #0645ad;">antioxidant</span>.<sup style="color: #0645ad;">[5][6][7]</sup> In plants and bacteria, melatonin primarily serves as a defense mechanism against <span style="color: #0645ad;">oxidative stress</span>, indicating its evolutionary significance.<sup style="color: #0645ad;">[8]</sup> The <span style="color: #0645ad;">mitochondria</span>, key organelles within cells, are the main producers of antioxidant melatonin,<sup style="color: #0645ad;">[9]</sup> underscoring the molecule's "ancient origins" and its fundamental role in protecting the earliest cells from reactive oxygen species.<sup style="color: #0645ad;">[10][11]</sup></p>
+                                
+                                <p style="margin-top: 1rem; color: #333;">In addition to its endogenous functions as a hormone and antioxidant, melatonin is also administered exogenously as a <span style="color: #0645ad;">dietary supplement</span> and medication. It is utilized in the treatment of <span style="color: #0645ad;">sleep disorders</span>, including <span style="color: #0645ad;">insomnia</span> and various <span style="color: #0645ad;">circadian rhythm sleep disorders</span>.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="cenvoy-window">
+                    
+                    <div class="cenvoy-window" style="position: absolute; width: 300px; height: 350px; top: 20%; right: 5%; background-color: white; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
                         <div style="padding: 1rem; height: 100%;">
                             <div style="height: 10%; background-color: var(--primary-color); border-radius: 4px; display: flex; align-items: center; padding: 0 1rem; color: white;">
                                 <span>Cenvoy AI Assistant</span>
