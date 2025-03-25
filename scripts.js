@@ -297,10 +297,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p style="margin: 0; color: var(--gray-color); font-size: 0.9rem;">Describe what you want your prompt template to do, and we'll generate it for you.</p>
                             
                             <div style="width: 100%; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; background-color: var(--light-color);">
-                                <textarea style="width: 100%; height: 240px; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: var(--font-main); resize: none; font-size: 0.9rem;">I have sleeping issue due to anxiety and long working hours, does this fit into my treatment for sleep, give me pros cons sideeffects and recomend alternative solutions, short and concise answer TLDR</textarea>
+                                <div class="typing-container" style="width: 100%; height: 240px; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: var(--font-main); background: white; overflow: hidden; position: relative;">
+                                    <div class="typing-text" style="white-space: pre-wrap; height: 100%; animation: typing 2s steps(80, end) forwards;">I have sleeping issue due to anxiety and long working hours, does this fit into my treatment for sleep, give me pros cons sideeffects and recomend alternative solutions, short and concise</div>
+                                </div>
                             </div>
                             
-                            <button class="generate-btn" style="align-self: flex-start; background-color: var(--primary-color); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; animation: button-click 2s 1s infinite;">
+                            <button class="generate-btn" style="align-self: flex-start; background-color: var(--primary-color); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; animation: button-click 2s 5s infinite;">
                                 <span>Generate Prompt Template</span>
                             </button>
                             
@@ -335,6 +337,29 @@ document.addEventListener('DOMContentLoaded', function() {
                         @keyframes button-click {
                             0%, 85%, 100% { transform: scale(1); }
                             90% { transform: scale(0.95); box-shadow: 0 0 15px rgba(74, 99, 238, 0.5); }
+                        }
+                        
+                        @keyframes typing {
+                            from { 
+                                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                            }
+                            to { 
+                                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                            }
+                        }
+                        
+                        @keyframes cursor-blink {
+                            from, to { opacity: 1; }
+                            50% { opacity: 0; }
+                        }
+                        
+                        .typing-container .typing-cursor {
+                            animation: cursor-blink 0.8s infinite, typing-cursor-move 4s steps(80, end) forwards;
+                        }
+                        
+                        @keyframes typing-cursor-move {
+                            from { left: 0.8rem; }
+                            to { left: calc(100% - 0.8rem); }
                         }
                     </style>
                 </div>
@@ -408,42 +433,9 @@ Make sure the output is concise and directly reflects any key points from the pr
         },
         {
             id: 5,
-            narration: "Get answers on the fly—stay immersed, stay productive.",
-            animationHtml: `
-                <div class="scene5">
-                    <div class="browser-tab">
-                        <div style="padding: 1rem; height: 100%;">
-                            <div style="height: 8%; background-color: #eee; border-radius: 4px;"></div>
-                            <div style="height: 5%; margin-top: 1rem; width: 70%; background-color: #eee; border-radius: 4px;"></div>
-                            <div style="height: 50%; margin-top: 1rem; background-color: #eee; border-radius: 4px;"></div>
-                        </div>
-                    </div>
-                    <div class="floating-window">
-                        <div class="window-header">
-                            Cenvoy AI Assistant
-                        </div>
-                        <div class="window-content">
-                            <div class="revealing-text">
-                                <p>Based on the selected text, here's a breakdown of the key concepts:</p>
-                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                                    <li>Machine learning models require proper data preprocessing</li>
-                                    <li>Feature engineering improves model performance</li>
-                                    <li>Cross-validation helps prevent overfitting</li>
-                                    <li>Hyperparameter tuning optimizes model accuracy</li>
-                                    <li>Model evaluation should use appropriate metrics</li>
-                                </ul>
-                                <p style="margin-top: 0.5rem;">Would you like me to elaborate on any specific point?</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
-        },
-        {
-            id: 6,
             narration: "Chain prompts for deeper research or brainstorming—all seamlessly in one place.",
             animationHtml: `
-                <div class="scene6">
+                <div class="scene5">
                     <div class="workflow-chain">
                         <div class="workflow-step">
                             <div class="step-number">1</div>
@@ -478,10 +470,10 @@ Make sure the output is concise and directly reflects any key points from the pr
             `
         },
         {
-            id: 7,
+            id: 6,
             narration: "Students, devs, interviewers—everyone benefits. Let Cenvoy be your AI-powered assistant.",
             animationHtml: `
-                <div class="scene7">
+                <div class="scene6">
                     <div class="scenario-grid">
                         <div class="scenario-card">
                             <div class="scenario-icon">
@@ -530,14 +522,13 @@ Make sure the output is concise and directly reflects any key points from the pr
             `
         },
         {
-            id: 8,
+            id: 7,
             narration: "Download Cenvoy today. Cut the clutter and harness AI's true power—right where you work.",
             animationHtml: `
-                <div class="scene8">
+                <div class="scene7">
                     <div class="cta-container">
                         <div class="cta-logo">Cenvoy</div>
                         <div class="cta-tagline">"Harness AI right where you work."</div>
-                        <a href="#download" class="cta-button">Install Now</a>
                     </div>
                 </div>
             `
@@ -572,30 +563,27 @@ Make sure the output is concise and directly reflects any key points from the pr
                 const cenvoyWindow = document.querySelector('.scene2 .cenvoy-window');
                 if (cenvoyWindow) cenvoyWindow.classList.add('active');
             }, 1000);
-        } else if (sceneId === "6") {
-            const steps = document.querySelectorAll('.scene6 .workflow-step');
+        } else if (sceneId === "5") {
+            const steps = document.querySelectorAll('.scene5 .workflow-step');
             steps.forEach((step, index) => {
                 setTimeout(() => {
                     step.classList.add('visible');
                 }, 500 + (index * 500));
             });
-        } else if (sceneId === "7") {
-            const cards = document.querySelectorAll('.scene7 .scenario-card');
+        } else if (sceneId === "6") {
+            const cards = document.querySelectorAll('.scene6 .scenario-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
                     card.classList.add('visible');
                 }, 300 + (index * 200));
             });
-        } else if (sceneId === "8") {
+        } else if (sceneId === "7") {
             setTimeout(() => {
-                document.querySelector('.scene8 .cta-logo').classList.add('visible');
+                document.querySelector('.scene7 .cta-logo').classList.add('visible');
             }, 500);
             setTimeout(() => {
-                document.querySelector('.scene8 .cta-tagline').classList.add('visible');
+                document.querySelector('.scene7 .cta-tagline').classList.add('visible');
             }, 1000);
-            setTimeout(() => {
-                document.querySelector('.scene8 .cta-button').classList.add('visible');
-            }, 1500);
         }
     }
 
@@ -618,17 +606,17 @@ Make sure the output is concise and directly reflects any key points from the pr
     });
 
     // Show initial scene
-    showScene("1");
+    showScene("7");
 
     // Auto-advance scenes every 8 seconds if not interacted with
-    let currentScene = 1;
+    let currentScene = 7;
     let autoAdvanceTimer;
 
     function startAutoAdvance() {
         if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
         
         const advanceScene = () => {
-            currentScene = currentScene % 8 + 1;
+            currentScene = currentScene % 7 + 1;
             showScene(currentScene.toString());
             
             // Set the timer for the next scene - 8s for all scenes
