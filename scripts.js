@@ -46,6 +46,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div style="padding: 0.3rem 0.5rem;">View history</div>
                                 </div>
                                 <p style="font-style: italic; color: #666; font-size: 0.9rem;">From Wikipedia, the free encyclopedia</p>
+                                
+                                <!-- Add chemical structure image -->
+                                <div style="float: right; width: 300px; margin: 0 0 1rem 1rem; background-color: white; border: 1px solid #eee; border-radius: 4px; padding: 1rem;">
+                                    <div style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">Melatonin</div>
+                                    <div style="margin-bottom: 1rem;">
+                                        <img src="images/melatonin-3d.png" alt="3D Chemical structure of Melatonin" style="width: 100%; height: auto;">
+                                        <div style="text-align: center; font-size: 0.8rem; color: #666;">3D ball-and-stick model</div>
+                                    </div>
+                                </div>
+                                
                                 <p style="margin-top: 1rem; padding: 1rem; border-radius: 4px; background-color: rgba(63, 219, 171, 0.3); animation: highlight 2s infinite; color: #333;"><b>Melatonin</b>, an <span style="color: #0645ad;">indoleamine</span>, is a <span style="color: #0645ad;">natural compound</span> produced by various <span style="color: #0645ad;">organisms</span>, including <span style="color: #0645ad;">bacteria</span> and <span style="color: #0645ad;">eukaryotes</span>.<sup style="color: #0645ad;">[1]</sup> Its discovery in 1958 by <span style="color: #0645ad;">Aaron B. Lerner</span> and colleagues stemmed from the isolation of a substance from the <span style="color: #0645ad;">pineal gland</span> of cows that could induce skin lightening in <span style="color: #0645ad;">common frogs</span>. This compound was later identified as a hormone secreted in the brain during the night, playing a crucial role in regulating the sleep-wake cycle, also known as the <span style="color: #0645ad;">circadian rhythm</span>, in vertebrates.<sup style="color: #0645ad;">[2][3]</sup></p>
                                 
                                 <p style="margin-top: 1rem; color: #333;">In vertebrates, melatonin's functions extend to <span style="color: #0645ad;">synchronizing</span> sleep-wake cycles, encompassing sleep-wake timing and <span style="color: #0645ad;">blood pressure regulation</span>, as well as controlling seasonal rhythmicity <span style="color: #0645ad;">(circannual cycle)</span>, which includes reproduction, fattening, molting, and hibernation.<sup style="color: #0645ad;">[4]</sup> Its effects are mediated through the activation of <span style="color: #0645ad;">melatonin receptors</span> and its role as an <span style="color: #0645ad;">antioxidant</span>.<sup style="color: #0645ad;">[5][6][7]</sup> In plants and bacteria, melatonin primarily serves as a defense mechanism against <span style="color: #0645ad;">oxidative stress</span>, indicating its evolutionary significance.<sup style="color: #0645ad;">[8]</sup> The <span style="color: #0645ad;">mitochondria</span>, key organelles within cells, are the main producers of antioxidant melatonin,<sup style="color: #0645ad;">[9]</sup> underscoring the molecule's "ancient origins" and its fundamental role in protecting the earliest cells from reactive oxygen species.<sup style="color: #0645ad;">[10][11]</sup></p>
@@ -196,6 +206,15 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div style="padding: 0.3rem 0.5rem;">View history</div>
                                 </div>
                                 <p style="font-style: italic; color: #666; font-size: 0.9rem;">From Wikipedia, the free encyclopedia</p>
+                                
+                                <!-- Add chemical structure image -->
+                                <div style="float: right; width: 300px; margin: 0 0 1rem 1rem; background-color: white; border: 1px solid #eee; border-radius: 4px; padding: 1rem;">
+                                    <div style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">Melatonin</div>
+                                    <div style="margin-bottom: 1rem;">
+                                        <img src="images/melatonin-3d.png" alt="3D Chemical structure of Melatonin" style="width: 100%; height: auto;">
+                                        <div style="text-align: center; font-size: 0.8rem; color: #666;">3D ball-and-stick model</div>
+                                    </div>
+                                </div>
                                 
                                 <p style="margin-top: 1rem; padding: 1rem; border-radius: 4px; background-color: rgba(63, 219, 171, 0.3); animation: highlight 2s infinite; color: #333;"><b>Melatonin</b>, an <span style="color: #0645ad;">indoleamine</span>, is a <span style="color: #0645ad;">natural compound</span> produced by various <span style="color: #0645ad;">organisms</span>, including <span style="color: #0645ad;">bacteria</span> and <span style="color: #0645ad;">eukaryotes</span>.<sup style="color: #0645ad;">[1]</sup> Its discovery in 1958 by <span style="color: #0645ad;">Aaron B. Lerner</span> and colleagues stemmed from the isolation of a substance from the <span style="color: #0645ad;">pineal gland</span> of cows that could induce skin lightening in <span style="color: #0645ad;">common frogs</span>. This compound was later identified as a hormone secreted in the brain during the night, playing a crucial role in regulating the sleep-wake cycle, also known as the <span style="color: #0645ad;">circadian rhythm</span>, in vertebrates.<sup style="color: #0645ad;">[2][3]</sup></p>
                                 
