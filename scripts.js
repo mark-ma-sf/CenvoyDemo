@@ -480,45 +480,174 @@ Make sure the output is concise and directly reflects any key points from the pr
                                 <i class="fas fa-graduation-cap"></i>
                             </div>
                             <div class="scenario-title">Students</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-color);">Summarize complex readings and generate study questions.</div>
+                            <div class="scenario-desc">Summarize complex readings and generate study questions.</div>
                         </div>
                         <div class="scenario-card">
                             <div class="scenario-icon">
                                 <i class="fas fa-code"></i>
                             </div>
                             <div class="scenario-title">Developers</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-color);">Get code explanations and debug assistance without switching context.</div>
+                            <div class="scenario-desc">Get code explanations and debug assistance without switching context.</div>
                         </div>
                         <div class="scenario-card">
                             <div class="scenario-icon">
                                 <i class="fas fa-user-tie"></i>
                             </div>
                             <div class="scenario-title">Recruiters</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-color);">Craft interview questions and analyze candidate responses.</div>
+                            <div class="scenario-desc">Craft interview questions and analyze candidate responses.</div>
                         </div>
                         <div class="scenario-card">
                             <div class="scenario-icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                             <div class="scenario-title">Writers</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-color);">Improve content and generate creative ideas without losing flow.</div>
+                            <div class="scenario-desc">Improve content and generate creative ideas without losing flow.</div>
                         </div>
                         <div class="scenario-card">
                             <div class="scenario-icon">
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <div class="scenario-title">Analysts</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-color);">Extract insights from data and generate visualization recommendations.</div>
+                            <div class="scenario-desc">Extract insights from data and generate visualization recommendations.</div>
                         </div>
                         <div class="scenario-card">
                             <div class="scenario-icon">
                                 <i class="fas fa-language"></i>
                             </div>
                             <div class="scenario-title">Translators</div>
-                            <div style="font-size: 0.9rem; color: var(--gray-color);">Instantly translate content while maintaining context.</div>
+                            <div class="scenario-desc">Instantly translate content while maintaining context.</div>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="scenario-title">Educators</div>
+                            <div class="scenario-desc">Create lesson plans and educational materials tailored to different learning styles.</div>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon">
+                                <i class="fas fa-briefcase-medical"></i>
+                            </div>
+                            <div class="scenario-title">Healthcare</div>
+                            <div class="scenario-desc">Research medical topics and simplify complex health information.</div>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <div class="scenario-title">Legal</div>
+                            <div class="scenario-desc">Review documents and extract key clauses without losing focus.</div>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="scenario-title">E-commerce</div>
+                            <div class="scenario-desc">Generate product descriptions and analyze customer reviews.</div>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <div class="scenario-title">Content Creators</div>
+                            <div class="scenario-desc">Script outlines, video ideas, and content research all in one place.</div>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="scenario-title">Researchers</div>
+                            <div class="scenario-desc">Summarize academic papers and identify research gaps without tab-switching.</div>
                         </div>
                     </div>
                 </div>
+                <style>
+                    .scene6 .scenario-grid {
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
+                        gap: 1rem;
+                        overflow-y: auto;
+                        max-height: 95%;
+                    }
+                    
+                    .scene6 .scenario-card {
+                        transform: scale(0);
+                        opacity: 0;
+                        background: white;
+                        border-radius: 12px;
+                        padding: 1.5rem;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                        border: 1px solid rgba(0,0,0,0.05);
+                        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                                  opacity 0.6s ease,
+                                  box-shadow 0.3s ease,
+                                  border-color 0.3s ease;
+                    }
+                    
+                    .scene6 .scenario-card:hover {
+                        box-shadow: 0 8px 25px rgba(74, 99, 238, 0.15);
+                        border-color: rgba(74, 99, 238, 0.2);
+                        transform: scale(1.05) translateY(-5px) !important;
+                    }
+                    
+                    .scene6 .scenario-card.visible {
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+                    
+                    .scene6 .scenario-icon {
+                        width: 60px;
+                        height: 60px;
+                        background-color: rgba(74, 99, 238, 0.1);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 1rem;
+                        color: var(--primary-color);
+                        font-size: 1.5rem;
+                    }
+                    
+                    .scene6 .scenario-title {
+                        font-weight: 600;
+                        font-size: 1.1rem;
+                        margin-bottom: 0.5rem;
+                        color: var(--dark-color);
+                    }
+                    
+                    .scene6 .scenario-desc {
+                        font-size: 0.9rem; 
+                        color: var(--gray-color);
+                    }
+                    
+                    @keyframes pulse {
+                        0% { transform: scale(1); }
+                        50% { transform: scale(1.05); }
+                        100% { transform: scale(1); }
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        .scene6 .scenario-grid {
+                            grid-template-columns: repeat(3, 1fr);
+                        }
+                    }
+                    
+                    @media (max-width: 900px) {
+                        .scene6 .scenario-grid {
+                            grid-template-columns: repeat(2, 1fr);
+                        }
+                    }
+                    
+                    @media (max-width: 600px) {
+                        .scene6 .scenario-grid {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                </style>
             `
         },
         {
@@ -571,12 +700,7 @@ Make sure the output is concise and directly reflects any key points from the pr
                 }, 500 + (index * 500));
             });
         } else if (sceneId === "6") {
-            const cards = document.querySelectorAll('.scene6 .scenario-card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('visible');
-                }, 300 + (index * 200));
-            });
+            animateScene6Cards();
         } else if (sceneId === "7") {
             setTimeout(() => {
                 document.querySelector('.scene7 .cta-logo').classList.add('visible');
@@ -646,4 +770,43 @@ Make sure the output is concise and directly reflects any key points from the pr
             }
         });
     });
+
+    // Function to handle scene 6 card animations
+    function animateScene6Cards() {
+        const cards = document.querySelectorAll('.scene6 .scenario-card');
+        cards.forEach((card, index) => {
+            // Clear any existing animation
+            card.style.animation = '';
+            
+            // Calculate row and column for wave effect
+            const row = Math.floor(index / 4);
+            const col = index % 4;
+            
+            // Calculate delay based on diagonal wave pattern
+            const delay = (row + col) * 100;
+            
+            // Add visible class with staggered delay
+            setTimeout(() => {
+                card.classList.add('visible');
+                
+                // Add pulse animation to random cards after they appear
+                if (Math.random() > 0.5) {
+                    setTimeout(() => {
+                        card.style.animation = `pulse 2s infinite ${Math.random() * 2}s`;
+                    }, 1000);
+                }
+            }, delay);
+        });
+    }
+
+    // Update the showScene function to use our new animation function
+    const originalShowScene = showScene;
+    showScene = function(sceneId) {
+        originalShowScene(sceneId);
+        
+        // If it's scene 6, use our enhanced animation
+        if (sceneId === "6") {
+            animateScene6Cards();
+        }
+    };
 }); 
