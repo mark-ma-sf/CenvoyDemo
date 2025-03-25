@@ -297,28 +297,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p style="margin: 0; color: var(--gray-color); font-size: 0.9rem;">Describe what you want your prompt template to do, and we'll generate it for you.</p>
                             
                             <div style="width: 100%; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; background-color: var(--light-color);">
-                                <textarea style="width: 100%; height: 240px; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: var(--font-main); resize: none; font-size: 0.9rem;">You are given a medicine name and a short description. 
-From this information, generate a concise overview in the following format:
-
-"[Medicine Name] is a/an [type or class of medicine] commonly used for [primary indication or use].
-
-- Pros:
-
-- Cons:
-
-- Common Side Effects:
-
-- Alternatives:
-
-TL;DR:
-- When it helps: [Brief summary of situations/conditions]
-- When it may not: [Brief mention of limitations or contradictions]
-- Seek professional advice: Always consult a healthcare provider for personalized guidance."
-
-Make sure the output is concise and directly reflects any key points from the provided medicine name and description. If any details are missing, leave placeholders or make logical assumptions without inventing false data.</textarea>
+                                <textarea style="width: 100%; height: 240px; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: var(--font-main); resize: none; font-size: 0.9rem;">I have sleeping issue due to anxiety and long working hours, does this fit into my treatment for sleep, give me pros cons sideeffects and recomend alternative solutions, short and concise answer TLDR</textarea>
                             </div>
                             
-                            <button style="align-self: flex-start; background-color: var(--primary-color); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                            <button class="generate-btn" style="align-self: flex-start; background-color: var(--primary-color); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; animation: button-click 2s 1s infinite;">
                                 <span>Generate Prompt Template</span>
                             </button>
                             
@@ -349,6 +331,12 @@ Make sure the output is concise and directly reflects any key points from the pr
                             </table>
                         </div>
                     </div>
+                    <style>
+                        @keyframes button-click {
+                            0%, 85%, 100% { transform: scale(1); }
+                            90% { transform: scale(0.95); box-shadow: 0 0 15px rgba(74, 99, 238, 0.5); }
+                        }
+                    </style>
                 </div>
             `
         },
