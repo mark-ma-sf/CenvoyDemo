@@ -292,32 +292,61 @@ document.addEventListener('DOMContentLoaded', function() {
             animationHtml: `
                 <div class="scene3">
                     <div class="template-page">
-                        <div class="template-header">
-                            <h3>Cenvoy Prompt Templates</h3>
-                        </div>
-                        <div class="template-grid">
-                            <div class="template-card">
-                                <h4>Summarize Article</h4>
-                                <p style="margin-top: 0.5rem; color: var(--gray-color); font-size: 0.9rem;">Extract key points from any article in a concise format.</p>
+                        <div style="padding: 1.5rem; height: 100%; display: flex; flex-direction: column; gap: 1.5rem; overflow-y: auto;">
+                            <h2 style="font-size: 1.2rem; color: var(--primary-color); margin: 0;">Step 1: Describe Your Prompt</h2>
+                            <p style="margin: 0; color: var(--gray-color); font-size: 0.9rem;">Describe what you want your prompt template to do, and we'll generate it for you.</p>
+                            
+                            <div style="width: 100%; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; background-color: var(--light-color);">
+                                <textarea style="width: 100%; height: 240px; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: var(--font-main); resize: none; font-size: 0.9rem;">You are given a medicine name and a short description. 
+From this information, generate a concise overview in the following format:
+
+"[Medicine Name] is a/an [type or class of medicine] commonly used for [primary indication or use].
+
+- Pros:
+
+- Cons:
+
+- Common Side Effects:
+
+- Alternatives:
+
+TL;DR:
+- When it helps: [Brief summary of situations/conditions]
+- When it may not: [Brief mention of limitations or contradictions]
+- Seek professional advice: Always consult a healthcare provider for personalized guidance."
+
+Make sure the output is concise and directly reflects any key points from the provided medicine name and description. If any details are missing, leave placeholders or make logical assumptions without inventing false data.</textarea>
                             </div>
-                            <div class="template-card">
-                                <h4>Translate Text</h4>
-                                <p style="margin-top: 0.5rem; color: var(--gray-color); font-size: 0.9rem;">Quickly translate content to any language.</p>
-                            </div>
-                            <div class="template-card">
-                                <h4>Code Explanation</h4>
-                                <p style="margin-top: 0.5rem; color: var(--gray-color); font-size: 0.9rem;">Get plain language explanations of complex code.</p>
-                            </div>
-                            <div class="template-card">
-                                <h4>Research Questions</h4>
-                                <p style="margin-top: 0.5rem; color: var(--gray-color); font-size: 0.9rem;">Generate insightful questions for deeper research.</p>
-                            </div>
-                            <div class="template-card" style="position: relative;">
-                                <h4>Add New Template</h4>
-                                <div style="position: absolute; right: 1rem; top: 1rem; width: 24px; height: 24px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-plus" style="font-size: 0.8rem;"></i>
-                                </div>
-                            </div>
+                            
+                            <button style="align-self: flex-start; background-color: var(--primary-color); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                                <span>Generate Prompt Template</span>
+                            </button>
+                            
+                            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 1rem 0;">Existing Templates</h3>
+                            
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid #ddd; text-align: left;">
+                                        <th style="padding: 0.8rem 0.5rem;">Title</th>
+                                        <th style="padding: 0.8rem 0.5rem;">Model</th>
+                                        <th style="padding: 0.8rem 0.5rem;">API Key</th>
+                                        <th style="padding: 0.8rem 0.5rem;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding: 0.8rem 0.5rem;">Mock Coding Interview Challenge in Java with Improvement Suggestions</td>
+                                        <td style="padding: 0.8rem 0.5rem;">gpt-4</td>
+                                        <td style="padding: 0.8rem 0.5rem;">Default</td>
+                                        <td style="padding: 0.8rem 0.5rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <button style="background-color: var(--primary-color); color: white; border: none; padding: 0.3rem 1rem; border-radius: 4px; font-size: 0.8rem;">Edit</button>
+                                                <button style="background-color: #f44336; color: white; border: none; padding: 0.3rem 1rem; border-radius: 4px; font-size: 0.8rem;">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
