@@ -567,24 +567,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let autoAdvanceTimer;
 
     function startAutoAdvance() {
-        if (autoAdvanceTimer) clearInterval(autoAdvanceTimer);
+        if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
         
         const advanceScene = () => {
             currentScene = currentScene % 8 + 1;
             showScene(currentScene.toString());
             
-            // Clear the existing timer and set a new one based on the current scene
-            clearInterval(autoAdvanceTimer);
-            
             // Set the timer for the next scene - 8s for all scenes
-            const nextDuration = 8000;
-            autoAdvanceTimer = setTimeout(advanceScene, nextDuration);
+            autoAdvanceTimer = setTimeout(advanceScene, 8000);
         };
         
         // Initial timer based on the current scene
-        const initialDuration = 8000;
-        autoAdvanceTimer = setTimeout(advanceScene, initialDuration);
+        autoAdvanceTimer = setTimeout(advanceScene, 8000);
     }
+
+    // Start the auto-advance immediately after page load
+    startAutoAdvance();
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
