@@ -1,0 +1,724 @@
+:root {
+    --primary-color: #4a63ee;
+    --secondary-color: #3fdbab;
+    --dark-color: #1c1c2e;
+    --light-color: #f4f5f9;
+    --gray-color: #738097;
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--dark-color);
+    line-height: 1.6;
+    background-color: var(--light-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header {
+    padding: 1.5rem 0;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    margin: 0 0.5rem;
+    transition: all 0.3s;
+}
+
+.btn.primary {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+}
+
+.btn.secondary {
+    border: 2px solid white;
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: #34c999;
+    transform: translateY(-2px);
+}
+
+.btn.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Demo Section */
+.demo {
+    padding: 5rem 0;
+    background-color: var(--dark-color);
+}
+
+.demo h2, .features h2, .download h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: white;
+}
+
+.scene-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.scene-display {
+    position: relative;
+    width: 100%;
+    background-color: var(--dark-color);
+    color: white;
+}
+
+.scene-animation {
+    width: 100%;
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scene-narration {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scene-narration p {
+    font-size: 1.2rem;
+    text-align: center;
+    font-style: italic;
+    min-height: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.scene-selector {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.5);
+    gap: 0.5rem;
+    padding: 1.5rem;
+    justify-content: center;
+}
+
+.scene {
+    flex: 1 0 22%;
+    max-width: 220px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.scene:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scene.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(74, 99, 238, 0.3);
+}
+
+.scene-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: currentColor;
+    color: var(--dark-color);
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.scene-title {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Features Section */
+.features {
+    padding: 5rem 0;
+    background-color: var(--light-color);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+/* Download Section */
+.download {
+    padding: 5rem 0;
+    background-color: white;
+    text-align: center;
+}
+
+.browser-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.browser-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color: var(--light-color);
+    transition: all 0.3s;
+    width: 120px;
+}
+
+.browser-btn i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.browser-btn span {
+    font-weight: 500;
+}
+
+.browser-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+footer .logo {
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.social-links i {
+    font-size: 1.2rem;
+}
+
+/* Animation Classes */
+
+/* Scene 1: The Copy-Paste Struggle */
+@keyframes tabSwitch {
+    0% { transform: translateX(0) scale(1); opacity: 1; }
+    20% { transform: translateX(-100%) scale(0.95); opacity: 0; }
+    25% { transform: translateX(100%) scale(0.95); opacity: 0; }
+    40% { transform: translateX(0) scale(1); opacity: 1; }
+    100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+.browser-tab {
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.scene1 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene1 .browser-tab {
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.scene1 .browser-tab.website,
+.scene1 .browser-tab.chatgpt {
+    aspect-ratio: 16/9;
+    width: 80%;
+    height: auto;
+    left: 10%;
+}
+
+.scene1 .browser-tab.website {
+    top: 10%;
+}
+
+.scene1 .browser-tab.chatgpt {
+    top: 20%;
+}
+
+.scene1 .frustrated-user {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--gray-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    z-index: 100;
+}
+
+/* Additional animations for website copy-paste demo */
+@keyframes window-alternate {
+    0%, 45% { z-index: 10; transform: translateY(0); }
+    50%, 95% { z-index: 1; transform: translateY(0); }
+    100% { z-index: 10; transform: translateY(0); }
+}
+
+@keyframes window-alternate-reverse {
+    0%, 45% { z-index: 1; transform: translateY(0); }
+    50%, 95% { z-index: 10; transform: translateY(0); }
+    100% { z-index: 1; transform: translateY(0); }
+}
+
+@keyframes select-text {
+    0%, 15% { opacity: 0; }
+    20%, 30% { opacity: 1; }
+    35%, 100% { opacity: 0; }
+}
+
+@keyframes show-right-click {
+    0%, 22% { opacity: 0; }
+    25%, 35% { opacity: 1; }
+    38%, 100% { opacity: 0; }
+}
+
+@keyframes show-paste-menu {
+    0%, 48% { opacity: 0; }
+    50%, 60% { opacity: 1; }
+    63%, 100% { opacity: 0; }
+}
+
+@keyframes copy-ani {
+    0%, 35% { opacity: 0; transform: translate(0, 0); }
+    38% { opacity: 1; transform: translate(0, 0); }
+    45% { opacity: 1; transform: translate(0, 100px); }
+    48%, 100% { opacity: 0; transform: translate(0, 100px); }
+}
+
+@keyframes paste-appear {
+    0%, 63% { opacity: 0; }
+    66%, 100% { opacity: 1; }
+}
+
+@keyframes type-text {
+    0%, 66% { width: 0%; }
+    75%, 100% { width: 100%; }
+}
+
+/* Scene 2: Enter Cenvoy */
+@keyframes highlight {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(63, 219, 171, 0.3); }
+    100% { background-color: transparent; }
+}
+
+.scene2 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene2 .browser-tab {
+    position: absolute;
+    width: 70%;
+    height: 70%; 
+    left: 15%;
+    top: 10%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.scene2 .highlighted-text {
+    position: absolute;
+    width: 70%;
+    height: 20%;
+    top: 35%;
+    left: 15%;
+    border-radius: 4px;
+    animation: highlight 2s infinite;
+}
+
+.scene2 .cenvoy-window {
+    position: absolute;
+    width: 300px;
+    height: 350px;
+    top: 25%;
+    right: 5%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.5s ease-out;
+}
+
+.scene2 .cenvoy-window.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Scene 3: Customized Prompt Templates */
+.scene3 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene3 .template-page {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    left: 10%;
+    top: 10%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Scene 4: No Prompt Engineering */
+.scene4 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene4 .simple-prompt {
+    position: absolute;
+    width: 70%;
+    top: 30%;
+    left: 15%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Scene 5: Immersive AI Window */
+.scene5 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene5 .browser-tab {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    left: 5%;
+    top: 15%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.scene5 .floating-window {
+    position: absolute;
+    width: 300px;
+    height: 350px;
+    top: 20%;
+    right: 10%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scene 6: Powerful Workflows */
+.scene6 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene6 .workflow-chain {
+    position: absolute;
+    width: 80%;
+    height: 70%;
+    top: 15%;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Scene 7: Real-World Scenarios */
+.scene7 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene7 .scenario-grid {
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 10%;
+    left: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+/* Scene 8: Call to Action */
+.scene8 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene8 .cta-container {
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 10%;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Animation for all scenes */
+.scene-animation > div {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.scene-animation > div.active {
+    opacity: 1;
+}
+
+/* Auto-play control button */
+.restart-auto {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.restart-auto:hover {
+    background-color: #3a51cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.restart-auto i {
+    font-size: 0.8rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .scene-animation {
+        aspect-ratio: auto;
+        min-height: 50vh;
+    }
+    
+    .scene-selector {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .scene {
+        flex: 1 0 100%;
+        max-width: 100%;
+    }
+} 
