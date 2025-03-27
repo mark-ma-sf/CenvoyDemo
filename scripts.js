@@ -302,8 +302,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                             </div>
                             
-                            <button class="generate-btn" style="align-self: flex-start; background-color: var(--primary-color); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; animation: button-click 2s 5s infinite;">
+                            <button class="generate-btn" style="align-self: flex-start; background-color: var(--primary-color); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; animation: button-click 1.5s 2s forwards 2; position: relative; overflow: hidden;">
+                                <i class="fas fa-bolt" style="animation: icon-pulse 1s ease-in-out infinite;"></i>
                                 <span>Generate Prompt Template</span>
+                                <span class="ripple" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-radius: 50%; background-color: rgba(255, 255, 255, 0.4); animation: ripple-effect 1s 2.2s forwards;"></span>
                             </button>
                             
                             <h3 style="font-size: 1.2rem; margin: 1.5rem 0 1rem 0;">Existing Templates</h3>
@@ -335,8 +337,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <style>
                         @keyframes button-click {
-                            0%, 85%, 100% { transform: scale(1); }
-                            90% { transform: scale(0.95); box-shadow: 0 0 15px rgba(74, 99, 238, 0.5); }
+                            0%, 5% { transform: scale(1); background-color: var(--primary-color); }
+                            10% { transform: scale(1.1); background-color: #5a73fe; box-shadow: 0 0 20px rgba(74, 99, 238, 0.8); }
+                            20% { transform: scale(0.9); background-color: #3fdbab; box-shadow: 0 0 25px rgba(63, 219, 171, 0.8); }
+                            30% { transform: scale(1.05); background-color: #5a73fe; box-shadow: 0 0 20px rgba(74, 99, 238, 0.8); }
+                            40% { transform: scale(0.95); background-color: #3fdbab; box-shadow: 0 0 25px rgba(63, 219, 171, 0.8); }
+                            50% { transform: scale(1.03); background-color: var(--primary-color); box-shadow: 0 0 15px rgba(74, 99, 238, 0.5); }
+                            100% { transform: scale(1); background-color: var(--primary-color); }
+                        }
+                        
+                        @keyframes icon-pulse {
+                            0% { transform: scale(1); }
+                            50% { transform: scale(1.4); color: #ffcc00; }
+                            100% { transform: scale(1); }
+                        }
+                        
+                        @keyframes ripple-effect {
+                            0% { width: 0; height: 0; opacity: 1; }
+                            100% { width: 200px; height: 200px; opacity: 0; }
                         }
                         
                         @keyframes typing {
@@ -1153,6 +1171,23 @@ function validateMove(game: Game, move: Move): boolean {
                 const cenvoyWindow = document.querySelector('.scene2 .cenvoy-window');
                 if (cenvoyWindow) cenvoyWindow.classList.add('active');
             }, 1000);
+        } else if (sceneId === "3") {
+            // Add auto-advance to next scene after button click animation
+            setTimeout(() => {
+                // Move to scene 4 after typing and button click animation finishes
+                currentScene = 4;
+                showScene("4");
+                
+                // Reset the auto-advance timer to give Scene 4 its full duration
+                clearTimeout(autoAdvanceTimer);
+                autoAdvanceTimer = setTimeout(() => {
+                    currentScene = 5;
+                    showScene("5");
+                    // Restart normal auto-advance from scene 5
+                    clearTimeout(autoAdvanceTimer);
+                    startAutoAdvance();
+                }, 8000); // Give Scene 4 the full 8 seconds duration
+            }, 2500); // Wait for typing (2s) and button click animation to finish
         } else if (sceneId === "4") {
             // Add specific handling for scene4 textarea scrolling
             setTimeout(() => {
