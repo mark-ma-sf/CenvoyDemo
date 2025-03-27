@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p style="margin: 0; color: var(--gray-color); font-size: 0.9rem;">Describe what you want your prompt template to do, and we'll generate it for you.</p>
                             
                             <div style="width: 100%; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; background-color: var(--light-color);">
-                                <textarea style="width: 100%; height: 240px; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: var(--font-main); resize: none; font-size: 0.9rem;">You are given a medicine name and a short description. 
+                                <textarea id="scene4-textarea" class="scrollable-textarea" style="width: 100%; height: 240px; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: var(--font-main); resize: none; font-size: 0.9rem; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none;">You are given a medicine name and a short description. 
 From this information, generate a concise overview in the following format:
 
 "[Medicine Name] is a/an [type or class of medicine] commonly used for [primary indication or use].
@@ -394,7 +394,15 @@ TL;DR:
 - When it may not: [Brief mention of limitations or contradictions]
 - Seek professional advice: Always consult a healthcare provider for personalized guidance."
 
-Make sure the output is concise and directly reflects any key points from the provided medicine name and description. If any details are missing, leave placeholders or make logical assumptions without inventing false data.</textarea>
+Make sure the output is concise and directly reflects any key points from the provided medicine name and description. If any details are missing, leave placeholders or make logical assumptions without inventing false data.
+
+The output should be accurate and helpful for someone trying to understand basic information about the medication.
+
+Additionally, if there are any important precautions or contraindications, make sure to highlight those in the "cons" section.
+
+For the "alternatives" section, include both pharmaceutical and lifestyle/non-pharmaceutical options when appropriate.
+
+This format makes complex medical information easy to digest and provides a valuable reference for quick decision-making.</textarea>
                             </div>
                             
                             <button style="align-self: flex-start; background-color: var(--primary-color); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
@@ -1114,6 +1122,11 @@ function validateMove(game: Game, move: Move): boolean {
 
     // Function to show scene by id
     function showScene(sceneId) {
+        // Clear any existing animations
+        if (window.textareaScrollInterval) {
+            clearInterval(window.textareaScrollInterval);
+        }
+        
         // Update scene selector
         document.querySelectorAll('.scene').forEach(scene => {
             scene.classList.remove('active');
@@ -1140,6 +1153,58 @@ function validateMove(game: Game, move: Move): boolean {
                 const cenvoyWindow = document.querySelector('.scene2 .cenvoy-window');
                 if (cenvoyWindow) cenvoyWindow.classList.add('active');
             }, 1000);
+        } else if (sceneId === "4") {
+            // Add specific handling for scene4 textarea scrolling
+            setTimeout(() => {
+                const textarea = document.getElementById('scene4-textarea');
+                if (textarea) {
+                    // Reset scroll position
+                    textarea.scrollTop = 0;
+                    
+                    // Create a scroll animation
+                    let duration = 3000; // 3 seconds total
+                    let scrollInterval;
+                    let startTime;
+                    
+                    // Clear any existing animation
+                    if (window.textareaScrollInterval) {
+                        clearInterval(window.textareaScrollInterval);
+                    }
+                    
+                    // Start new animation
+                    window.textareaScrollInterval = setInterval(() => {
+                        // Start with a pause at the top
+                        setTimeout(() => {
+                            startTime = Date.now();
+                            
+                            // Calculate max scroll distance
+                            const maxScroll = textarea.scrollHeight - textarea.clientHeight;
+                            
+                            // Create the scrolling animation 
+                            scrollInterval = setInterval(() => {
+                                const elapsed = Date.now() - startTime;
+                                const progress = elapsed / duration;
+                                
+                                if (progress < 0.5) {
+                                    // Scroll down phase (0% to 50% of time)
+                                    const scrollProgress = progress * 2; // Scale to 0-1
+                                    textarea.scrollTop = maxScroll * scrollProgress;
+                                } else if (progress < 0.8) {
+                                    // Hold at bottom (50% to 80% of time)
+                                    textarea.scrollTop = maxScroll;
+                                } else if (progress < 1) {
+                                    // Scroll back up (80% to 100% of time)
+                                    const scrollProgress = 1 - ((progress - 0.8) * 5); // Scale to 1-0
+                                    textarea.scrollTop = maxScroll * scrollProgress;
+                                } else {
+                                    // Animation complete
+                                    clearInterval(scrollInterval);
+                                }
+                            }, 16); // ~60fps
+                        }, 500); // Pause at top for half a second
+                    }, 4000); // Repeat every 4 seconds
+                }
+            }, 100);
         } else if (sceneId === "5") {
             const steps = document.querySelectorAll('.scene5 .workflow-step');
             steps.forEach((step, index) => {

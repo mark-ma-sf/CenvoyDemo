@@ -625,6 +625,23 @@ footer .logo {
     gap: 1rem;
 }
 
+@keyframes scrollTextarea {
+    0%, 5% { transform: translateY(0); }
+    30%, 70% { transform: translateY(min(-60%, calc(-100% + 240px))); }
+    95%, 100% { transform: translateY(0); }
+}
+
+.scene4 .scrollable-textarea {
+    animation: none;
+    overflow-y: auto !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.scene4 .scrollable-textarea::-webkit-scrollbar {
+    display: none !important;
+}
+
 /* Scene 5: Immersive AI Window */
 .scene5 {
     width: 100%;
