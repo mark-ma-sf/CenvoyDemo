@@ -436,37 +436,485 @@ Make sure the output is concise and directly reflects any key points from the pr
             narration: "Chain prompts for deeper research or brainstorming—all seamlessly in one place.",
             animationHtml: `
                 <div class="scene5">
-                    <div class="workflow-chain">
-                        <div class="workflow-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <div style="font-weight: 600;">Extract Key Points</div>
-                                <div style="font-size: 0.9rem; color: var(--gray-color);">Identify main arguments and evidence</div>
+                    <div class="browser-window" style="width: 90%; height: 80%; left: 5%; top: 5%; background-color: white; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); overflow: hidden; position: absolute;">
+                        <div style="height: 32px; background-color: #f3f3f3; border-radius: 4px 4px 0 0; display: flex; align-items: center; padding: 0 10px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ff6056; margin-right: 5px;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ffbd2e; margin-right: 5px;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #27c93f; margin-right: 5px;"></div>
+                            <div style="flex-grow: 1; text-align: center; color: #666;">Web Browser</div>
+                        </div>
+                        
+                        <!-- Browser Tabs -->
+                        <div style="height: 36px; background-color: #e0e0e0; display: flex; align-items: center; padding: 0 10px; border-bottom: 1px solid #ccc;">
+                            <div class="browser-tab-header docs-tab" style="height: 30px; padding: 0 15px; background-color: white; border-radius: 5px 5px 0 0; margin-right: 10px; display: flex; align-items: center; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); font-size: 12px;">
+                                <span style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Chess Game System Design</span>
                             </div>
                         </div>
-                        <div class="workflow-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <div style="font-weight: 600;">Simplify Explanation</div>
-                                <div style="font-size: 0.9rem; color: var(--gray-color);">Translate to plain language</div>
-                            </div>
-                        </div>
-                        <div class="workflow-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <div style="font-weight: 600;">Generate Questions</div>
-                                <div style="font-size: 0.9rem; color: var(--gray-color);">Create insightful follow-up questions</div>
-                            </div>
-                        </div>
-                        <div class="workflow-step">
-                            <div class="step-number">+</div>
-                            <div class="step-content">
-                                <div style="font-weight: 600;">Add Next Step</div>
-                                <div style="font-size: 0.9rem; color: var(--gray-color);">Customize your workflow</div>
+                        
+                        <!-- Chess Design Tutorial Content -->
+                        <div class="tab-content docs-content" style="height: calc(100% - 68px); overflow: auto; padding: 1rem;">
+                            <div class="system-design-tutorial" style="padding: 1rem; height: 100%; overflow-y: auto;">
+                                <div class="tutorial-header">
+                                    <h1>Building a Multiplayer Chess Game: System Design Guide</h1>
+                                    <div class="post-date">Posted 2 days ago · 12 min read</div>
+                                </div>
+                                
+                                <div class="tutorial-content">
+                                    <div class="section">
+                                        <h2>1. Requirements Analysis</h2>
+                                        <p>Let's design a multiplayer chess game that supports real-time gameplay and tournament features.</p>
+                                        
+                                        <div class="requirements-box">
+                                            <h4>Functional Requirements:</h4>
+                                            <ul>
+                                                <li>Real-time chess gameplay between two players</li>
+                                                <li>Move validation and game state management</li>
+                                                <li>Tournament system with brackets and rankings</li>
+                                                <li>Chat functionality between players</li>
+                                                <li>Game history and replay features</li>
+                                            </ul>
+                                            
+                                            <h4>Non-Functional Requirements:</h4>
+                                            <ul>
+                                                <li>Low latency (< 100ms for move updates)</li>
+                                                <li>Support 10,000 concurrent games</li>
+                                                <li>99.9% uptime for game servers</li>
+                                                <li>Data consistency across all game states</li>
+                                                <li>Secure authentication and anti-cheat measures</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="section">
+                                        <h2>2. System Architecture</h2>
+                                        <p>We'll implement a distributed architecture optimized for real-time gameplay:</p>
+                                        
+                                        <div class="architecture-diagram">
+                                            <div class="diagram-component client">Game Clients</div>
+                                            <div class="diagram-arrow">↓</div>
+                                            <div class="diagram-component api-gateway">Load Balancer</div>
+                                            <div class="diagram-arrow">↓</div>
+                                            <div class="diagram-services">
+                                                <div class="diagram-component service">Game Service</div>
+                                                <div class="diagram-component service">Matchmaking Service</div>
+                                                <div class="diagram-component service">Tournament Service</div>
+                                                <div class="diagram-component service">Chat Service</div>
+                                            </div>
+                                            <div class="diagram-arrow">↓</div>
+                                            <div class="diagram-dbs">
+                                                <div class="diagram-component db">Game State DB</div>
+                                                <div class="diagram-component db">User DB</div>
+                                                <div class="diagram-component db">Tournament DB</div>
+                                                <div class="diagram-component db">Redis Cache</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="code-snippet">
+                                            <pre><code>// Game Service WebSocket handler example
+class ChessGameHandler {
+  async handleMove(gameId: string, move: Move) {
+    const game = await this.gameState.get(gameId);
+    
+    // Validate move
+    if (!this.isValidMove(game, move)) {
+      throw new Error('Invalid move');
+    }
+    
+    // Update game state
+    const updatedGame = this.applyMove(game, move);
+    
+    // Broadcast to both players
+    await this.broadcast(gameId, {
+      type: 'MOVE_UPDATE',
+      game: updatedGame
+    });
+    
+    // Check for game end
+    if (this.isGameOver(updatedGame)) {
+      await this.handleGameEnd(gameId, updatedGame);
+    }
+  }
+}</code></pre>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="section">
+                                        <h2>3. Data Model</h2>
+                                        <p>Our data model needs to efficiently represent game states and player information:</p>
+                                        
+                                        <div class="data-model-diagram">
+                                            <div class="entity game-entity">
+                                                <div class="entity-header">Game</div>
+                                                <div class="entity-fields">
+                                                    <div>id: UUID (PK)</div>
+                                                    <div>whitePlayerId: UUID (FK)</div>
+                                                    <div>blackPlayerId: UUID (FK)</div>
+                                                    <div>currentPosition: JSON</div>
+                                                    <div>moveHistory: JSON[]</div>
+                                                    <div>status: ENUM</div>
+                                                </div>
+                                            </div>
+                                            <div class="entity-relation">N:1</div>
+                                            <div class="entity player-entity">
+                                                <div class="entity-header">Player</div>
+                                                <div class="entity-fields">
+                                                    <div>id: UUID (PK)</div>
+                                                    <div>username: VARCHAR</div>
+                                                    <div>rating: INTEGER</div>
+                                                    <div>gamesPlayed: INTEGER</div>
+                                                    <div>wins: INTEGER</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="code-snippet">
+                                            <pre><code>// PostgreSQL Schema example
+CREATE TABLE games (
+  id UUID PRIMARY KEY,
+  white_player_id UUID REFERENCES players(id),
+  black_player_id UUID REFERENCES players(id),
+  current_position JSONB NOT NULL,
+  move_history JSONB[] NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE players (
+  id UUID PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  rating INTEGER NOT NULL DEFAULT 1500,
+  games_played INTEGER NOT NULL DEFAULT 0,
+  wins INTEGER NOT NULL DEFAULT 0
+);</code></pre>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="section">
+                                        <h2>4. Scalability & Performance</h2>
+                                        <p>To handle our scalability requirements, we'll implement several strategies:</p>
+                                        
+                                        <div class="strategies-grid">
+                                            <div class="strategy-card">
+                                                <div class="strategy-icon">🎮</div>
+                                                <div class="strategy-title">Game State Management</div>
+                                                <div class="strategy-desc">Redis for active game states with PostgreSQL for persistence</div>
+                                            </div>
+                                            <div class="strategy-card">
+                                                <div class="strategy-icon">⚡</div>
+                                                <div class="strategy-title">WebSocket Clustering</div>
+                                                <div class="strategy-desc">Sticky sessions and Redis pub/sub for real-time updates</div>
+                                            </div>
+                                            <div class="strategy-card">
+                                                <div class="strategy-icon">🎯</div>
+                                                <div class="strategy-title">Matchmaking</div>
+                                                <div class="strategy-desc">Rating-based matchmaking with queue system</div>
+                                            </div>
+                                            <div class="strategy-card">
+                                                <div class="strategy-icon">🔍</div>
+                                                <div class="strategy-title">Anti-Cheat</div>
+                                                <div class="strategy-desc">Server-side move validation and state verification</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bottleneck-analysis">
+                                            <h4>Potential Bottlenecks:</h4>
+                                            <table>
+                                                <tr>
+                                                    <th>Component</th>
+                                                    <th>Issue</th>
+                                                    <th>Solution</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Game State</td>
+                                                    <td>High memory usage for active games</td>
+                                                    <td>Redis cluster with sharding</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>WebSocket</td>
+                                                    <td>Connection overhead</td>
+                                                    <td>Connection pooling + keep-alive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Matchmaking</td>
+                                                    <td>Queue processing delays</td>
+                                                    <td>Distributed queue system</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="section">
+                                        <h2>5. Security & Reliability</h2>
+                                        <p>Implementing robust security measures and ensuring fault tolerance:</p>
+                                        
+                                        <div class="security-features">
+                                            <div class="feature-item">
+                                                <h4>Game Integrity</h4>
+                                                <p>Server-side validation of all moves and game states:</p>
+                                                <div class="code-snippet">
+                                                    <pre><code>// Move validation example
+function validateMove(game: Game, move: Move): boolean {
+  // Check if it's the player's turn
+  if (game.currentTurn !== move.playerId) {
+    return false;
+  }
+  
+  // Validate piece movement
+  const piece = game.board[move.from];
+  if (!isValidPieceMovement(piece, move)) {
+    return false;
+  }
+  
+  // Check for check/checkmate
+  const newState = simulateMove(game, move);
+  if (isInCheck(newState, move.playerId)) {
+    return false;
+  }
+  
+  return true;
+}</code></pre>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="feature-item">
+                                                <h4>Fault Tolerance</h4>
+                                                <p>Implementing game state recovery and connection handling:</p>
+                                                <div class="architecture-diagram fault-tolerance">
+                                                    <div class="primary-node">Game Server A</div>
+                                                    <div class="fallback-arrow">→</div>
+                                                    <div class="fallback-node">Game Server B</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <style>
+                    .system-design-tutorial {
+                        background: white;
+                    }
+                    
+                    .tutorial-header {
+                        margin-bottom: 2rem;
+                        padding-bottom: 1rem;
+                        border-bottom: 1px solid #eee;
+                    }
+                    
+                    .tutorial-header h1 {
+                        font-size: 1.8rem;
+                        margin-bottom: 1rem;
+                    }
+                    
+                    .post-date {
+                        font-size: 0.8rem;
+                        color: var(--gray-color);
+                    }
+                    
+                    .tutorial-content {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2rem;
+                    }
+                    
+                    .section {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                    }
+                    
+                    .section h2 {
+                        font-size: 1.4rem;
+                        color: var(--primary-color);
+                    }
+                    
+                    .requirements-box {
+                        background: #f8f9fa;
+                        padding: 1rem;
+                        border-radius: 8px;
+                    }
+                    
+                    .requirements-box h4 {
+                        margin-top: 0.5rem;
+                        margin-bottom: 0.5rem;
+                    }
+                    
+                    .requirements-box ul {
+                        margin-left: 1.5rem;
+                        margin-bottom: 1rem;
+                    }
+                    
+                    .architecture-diagram {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0.5rem;
+                        margin: 1rem 0;
+                    }
+                    
+                    .diagram-component {
+                        padding: 0.5rem 1rem;
+                        border-radius: 4px;
+                        background: #eee;
+                        text-align: center;
+                    }
+                    
+                    .diagram-services, .diagram-dbs {
+                        display: flex;
+                        gap: 0.5rem;
+                        width: 100%;
+                    }
+                    
+                    .diagram-component.client {
+                        background: #e3f2fd;
+                    }
+                    
+                    .diagram-component.api-gateway {
+                        background: #fff8e1;
+                        width: 100%;
+                    }
+                    
+                    .diagram-component.service {
+                        background: #e8f5e9;
+                        flex: 1;
+                    }
+                    
+                    .diagram-component.db {
+                        background: #f3e5f5;
+                        flex: 1;
+                    }
+                    
+                    .code-snippet {
+                        background: #282c34;
+                        color: #abb2bf;
+                        padding: 1rem;
+                        border-radius: 4px;
+                        overflow-x: auto;
+                    }
+                    
+                    .code-snippet pre {
+                        margin: 0;
+                    }
+                    
+                    .data-model-diagram {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 1rem;
+                        margin: 1rem 0;
+                    }
+                    
+                    .entity {
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        width: 200px;
+                    }
+                    
+                    .entity-header {
+                        background: #f0f0f0;
+                        padding: 0.5rem;
+                        font-weight: 600;
+                        text-align: center;
+                        border-bottom: 1px solid #ddd;
+                    }
+                    
+                    .entity-fields {
+                        padding: 0.5rem;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.3rem;
+                    }
+                    
+                    .entity-relation {
+                        font-weight: 700;
+                    }
+                    
+                    .strategies-grid {
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 1rem;
+                        margin: 1rem 0;
+                    }
+                    
+                    .strategy-card {
+                        background: #f8f9fa;
+                        padding: 1rem;
+                        border-radius: 8px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0.5rem;
+                    }
+                    
+                    .strategy-icon {
+                        font-size: 1.5rem;
+                    }
+                    
+                    .strategy-title {
+                        font-weight: 600;
+                    }
+                    
+                    .strategy-desc {
+                        font-size: 0.9rem;
+                        text-align: center;
+                    }
+                    
+                    .bottleneck-analysis {
+                        margin-top: 1rem;
+                    }
+                    
+                    .bottleneck-analysis table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 0.5rem;
+                    }
+                    
+                    .bottleneck-analysis th, .bottleneck-analysis td {
+                        border: 1px solid #ddd;
+                        padding: 0.5rem;
+                        text-align: left;
+                    }
+                    
+                    .bottleneck-analysis th {
+                        background: #f0f0f0;
+                    }
+                    
+                    .security-features {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5rem;
+                    }
+                    
+                    .feature-item {
+                        background: #f8f9fa;
+                        padding: 1rem;
+                        border-radius: 8px;
+                    }
+                    
+                    .feature-item h4 {
+                        margin-bottom: 0.5rem;
+                    }
+                    
+                    .fault-tolerance {
+                        margin-top: 1rem;
+                        flex-direction: row;
+                        align-items: center;
+                    }
+                    
+                    .primary-node {
+                        background: #e8f5e9;
+                        padding: 0.5rem 1rem;
+                        border-radius: 4px;
+                    }
+                    
+                    .fallback-node {
+                        background: #ffebee;
+                        padding: 0.5rem 1rem;
+                        border-radius: 4px;
+                    }
+                </style>
             `
         },
         {
@@ -714,20 +1162,20 @@ Make sure the output is concise and directly reflects any key points from the pr
     // Add sceneData globally available
     window.sceneData = sceneData;
 
-    // Remove click event listeners for scenes - make non-interactive
-    // document.querySelectorAll('.scene').forEach(scene => {
-    //     scene.addEventListener('click', function() {
-    //         const sceneId = this.getAttribute('data-scene');
-    //         showScene(sceneId);
-    //         
-    //         // Update current scene
-    //         currentScene = parseInt(sceneId);
-    //         
-    //         // Reset the auto-advance timer to start from this scene
-    //         clearInterval(autoAdvanceTimer);
-    //         startAutoAdvance();
-    //     });
-    // });
+    // Add click event listeners to scene selectors
+    document.querySelectorAll('.scene').forEach(scene => {
+        scene.addEventListener('click', function() {
+            const sceneId = this.getAttribute('data-scene');
+            showScene(sceneId);
+            
+            // Update current scene
+            currentScene = parseInt(sceneId);
+            
+            // Reset the auto-advance timer to start from this scene
+            clearInterval(autoAdvanceTimer);
+            startAutoAdvance();
+        });
+    });
 
     // Show initial scene
     showScene("7");

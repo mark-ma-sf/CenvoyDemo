@@ -230,10 +230,10 @@ nav ul li a:hover {
 
 .scene:hover {
     color: white;
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    background-color: rgba(44, 44, 66, 0.9);
-    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px) scale(1.03) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25) !important;
+    background-color: rgba(44, 44, 66, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .scene.active {
@@ -332,8 +332,10 @@ nav ul li a:hover {
 }
 
 .browser-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: none !important;
+    box-shadow: inherit !important;
+    background-color: inherit !important;
+    border-color: inherit !important;
 }
 
 /* Footer */
@@ -784,14 +786,19 @@ footer .logo {
 
 /* Disable all user interaction within scenes */
 .scene-animation,
-.scene-animation *,
-.scene-selector,
-.scene-selector * {
+.scene-animation * {
     pointer-events: none !important;
     user-select: none !important;
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
     -ms-user-select: none !important;
+}
+
+/* Re-enable scene buttons */
+.scene-selector,
+.scene-selector .scene {
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
 /* Disable scrolling within scene elements */
@@ -813,8 +820,7 @@ footer .logo {
     pointer-events: none !important;
 }
 
-/* Remove hover effects that might suggest interactivity */
-.scene:hover,
+/* Remove hover effects that might suggest interactivity except for scene buttons */
 .browser-btn:hover,
 .feature-card:hover,
 .btn:hover,
