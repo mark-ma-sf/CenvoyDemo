@@ -709,6 +709,43 @@ footer .logo {
 
 .scene5 .cenvoy-window .chat-bubble {
     animation: fadeInUp 0.3s forwards;
+    margin: 8px 12px;
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    position: relative;
+    clear: both;
+}
+
+/* New styles for chat bubbles */
+.scene5 .interviewer-message {
+    background-color: transparent;
+    color: #333;
+    float: right;
+    border-bottom-right-radius: 4px;
+    margin-left: 20%;
+    text-align: right;
+}
+
+.scene5 .interviewee-message {
+    background-color: transparent;
+    color: #333;
+    float: left;
+    border-bottom-left-radius: 4px;
+    margin-right: 20%;
+}
+
+.scene5 .chat-bubble p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Clear floats after each message */
+.scene5 .chat-bubble::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 /* Scene 6: Real-World Scenarios */
