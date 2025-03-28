@@ -474,43 +474,306 @@ This format makes complex medical information easy to digest and provides a valu
             narration: "Chain prompts for deeper research or brainstorming—all seamlessly in one place.",
             animationHtml: `
                 <div class="scene5">
-                    <div class="browser-window" style="width: 90%; height: 80%; left: 5%; top: 5%; background-color: white; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); overflow: hidden; position: absolute; opacity: 0.3;">
-                        <div style="height: 32px; background-color: #f3f3f3; border-radius: 4px 4px 0 0; display: flex; align-items: center; padding: 0 10px;">
-                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ff6056; margin-right: 5px;"></div>
-                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #ffbd2e; margin-right: 5px;"></div>
-                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #27c93f; margin-right: 5px;"></div>
-                            <div style="flex-grow: 1; text-align: center; color: #666;">Web Browser</div>
+                    <div class="browser-window" style="width: 90%; height: 85%; left: 5%; top: 3%; background-color: #fcfcfc; border-radius: 12px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.08); overflow: hidden; position: absolute; opacity: 1.0; transform: translateY(0); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 40px; background: linear-gradient(90deg, rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.02) 50%, rgba(0,0,0,0.01) 100%); z-index: 10; pointer-events: none;"></div>
+                        <div style="height: 38px; background: linear-gradient(to bottom, #f7f7f7, #f0f0f0); border-radius: 12px 12px 0 0; display: flex; align-items: center; padding: 0 14px; border-bottom: 1px solid rgba(0, 0, 0, 0.07);">
+                            <div style="display: flex; gap: 8px; margin-right: 15px;">
+                                <div style="width: 12px; height: 12px; border-radius: 50%; background-color: #ff6056; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);"></div>
+                                <div style="width: 12px; height: 12px; border-radius: 50%; background-color: #ffbd2e; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);"></div>
+                                <div style="width: 12px; height: 12px; border-radius: 50%; background-color: #27c93f; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);"></div>
+                            </div>
+                            <div style="flex-grow: 1; text-align: center; color: #555; font-size: 13px; font-weight: 500;">Web Browser</div>
                         </div>
-                    </div>
-                    
-                    <!-- Add Cenvoy window to scene5 -->
-                    <div class="cenvoy-window" style="position: absolute; width: 900px; height: 700px; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.7); border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.3); overflow: hidden;">
-                        <div style="padding: 1rem; height: 100%; display: flex; flex-direction: column;">
-                            <div style="height: 40px; background-color: var(--primary-color); border-radius: 8px; display: flex; align-items: center; padding: 0 1rem; color: white; margin-bottom: 1rem;">
-                                <span style="font-weight: 500;">Cenvoy AI Assistant</span>
-                                <div style="margin-left: auto; display: flex; gap: 10px;">
-                                    <i class="fas fa-cog" style="font-size: 14px; opacity: 0.8;"></i>
-                                    <i class="fas fa-times" style="font-size: 14px; opacity: 0.8;"></i>
+                        <!-- Browser Tabs -->
+                        <div style="height: 40px; background-color: #f0f0f0; display: flex; align-items: center; padding: 0 14px; border-bottom: 1px solid rgba(0, 0, 0, 0.07);">
+                            <div class="browser-tab-header docs-tab" style="height: 34px; padding: 0 18px; background: linear-gradient(to bottom, #ffffff, #f8f8f8); border-radius: 8px 8px 0 0; margin-right: 10px; display: flex; align-items: center; box-shadow: 0 -2px 8px rgba(0,0,0,0.05); font-size: 13px; font-weight: 500; border: 1px solid rgba(0,0,0,0.07); border-bottom: none;">
+                                <span style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #444;">Chess Game System Design</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Chess Design Tutorial Content -->
+                        <div class="tab-content docs-content" style="height: calc(100% - 78px); overflow: auto; padding: 1.5rem; background-color: white; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);">
+                            <div class="system-design-tutorial" style="padding: 1rem; height: 100%; overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;">
+                                <div class="tutorial-header" style="margin-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem;">
+                                    <h1 style="font-size: 2rem; color: #333; font-weight: 600; margin-bottom: 0.5rem; letter-spacing: -0.01em;">Building a Multiplayer Chess Game: System Design Guide</h1>
+                                    <div class="post-date" style="color: #6b7280; font-size: 0.9rem;">Posted 2 days ago · 12 min read</div>
+                                </div>
+                                
+                                <div class="tutorial-content" style="color: #374151; font-size: 15px; line-height: 1.6;">
+                                    <div class="section" style="margin-bottom: 2rem;">
+                                        <h2 style="font-size: 1.5rem; color: #111; margin-bottom: 1rem; font-weight: 600;">1. Requirements Analysis</h2>
+                                        <p style="margin-bottom: 1rem;">Let's design a multiplayer chess game that supports real-time gameplay and tournament features.</p>
+                                        
+                                        <div class="requirements-box" style="background-color: #f9fafb; border-radius: 8px; padding: 1.2rem; border: 1px solid #e5e7eb; margin: 1.2rem 0;">
+                                            <h4 style="font-size: 1.1rem; margin-bottom: 0.8rem; color: #111; font-weight: 600;">Functional Requirements:</h4>
+                                            <ul style="padding-left: 1.5rem; margin-bottom: 1.2rem;">
+                                                <li>Real-time chess gameplay between two players</li>
+                                                <li>Move validation and game state management</li>
+                                                <li>Tournament system with brackets and rankings</li>
+                                                <li>Chat functionality between players</li>
+                                                <li>Game history and replay features</li>
+                                            </ul>
+                                            
+                                            <h4 style="font-size: 1.1rem; margin-bottom: 0.8rem; color: #111; font-weight: 600;">Non-Functional Requirements:</h4>
+                                            <ul style="padding-left: 1.5rem; margin-bottom: 0;">
+                                                <li>Low latency (< 100ms for move updates)</li>
+                                                <li>Support 10,000 concurrent games</li>
+                                                <li>99.9% uptime for game servers</li>
+                                                <li>Data consistency across all game states</li>
+                                                <li>Secure authentication and anti-cheat measures</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="section" style="margin-bottom: 2rem;">
+                                        <h2 style="font-size: 1.5rem; color: #111; margin-bottom: 1rem; font-weight: 600;">2. System Architecture</h2>
+                                        <p style="margin-bottom: 1rem;">We'll implement a distributed architecture optimized for real-time gameplay:</p>
+                                        
+                                        <div class="architecture-diagram" style="background-color: #f8fafc; border-radius: 8px; padding: 1.5rem; margin: 1.2rem 0; text-align: center; border: 1px solid #e2e8f0;">
+                                            <div class="diagram-component client" style="background-color: #dbeafe; padding: 0.6rem; border-radius: 6px; margin-bottom: 0.5rem; display: inline-block; min-width: 180px; font-weight: 500;">Game Clients</div>
+                                            <div class="diagram-arrow" style="margin: 0.3rem 0; color: #64748b;">↓</div>
+                                            <div class="diagram-component api-gateway" style="background-color: #e0f2fe; padding: 0.6rem; border-radius: 6px; margin-bottom: 0.5rem; display: inline-block; min-width: 180px; font-weight: 500;">Load Balancer</div>
+                                            <div class="diagram-arrow" style="margin: 0.3rem 0; color: #64748b;">↓</div>
+                                            <div class="diagram-services" style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                                                <div class="diagram-component service" style="background-color: #dbeafe; padding: 0.5rem; border-radius: 6px; flex: 1; min-width: 130px; max-width: 200px; font-size: 0.9rem; font-weight: 500;">Game Service</div>
+                                                <div class="diagram-component service" style="background-color: #dbeafe; padding: 0.5rem; border-radius: 6px; flex: 1; min-width: 130px; max-width: 200px; font-size: 0.9rem; font-weight: 500;">Matchmaking Service</div>
+                                                <div class="diagram-component service" style="background-color: #dbeafe; padding: 0.5rem; border-radius: 6px; flex: 1; min-width: 130px; max-width: 200px; font-size: 0.9rem; font-weight: 500;">Tournament Service</div>
+                                                <div class="diagram-component service" style="background-color: #dbeafe; padding: 0.5rem; border-radius: 6px; flex: 1; min-width: 130px; max-width: 200px; font-size: 0.9rem; font-weight: 500;">Chat Service</div>
+                                            </div>
+                                            <div class="diagram-arrow" style="margin: 0.3rem 0; color: #64748b;">↓</div>
+                                            <div class="diagram-dbs" style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap;">
+                                                <div class="diagram-component db" style="background-color: #ccfbf1; padding: 0.5rem; border-radius: 6px; flex: 1; min-width: 120px; max-width: 180px; font-size: 0.9rem; font-weight: 500;">Game State DB</div>
+                                                <div class="diagram-component db" style="background-color: #ccfbf1; padding: 0.5rem; border-radius: 6px; flex: 1; min-width: 120px; max-width: 180px; font-size: 0.9rem; font-weight: 500;">User DB</div>
+                                                <div class="diagram-component db" style="background-color: #ccfbf1; padding: 0.5rem; border-radius: 6px; flex: 1; min-width: 120px; max-width: 180px; font-size: 0.9rem; font-weight: 500;">Tournament DB</div>
+                                                <div class="diagram-component db" style="background-color: #ccfbf1; padding: 0.5rem; border-radius: 6px; flex: 1; min-width: 120px; max-width: 180px; font-size: 0.9rem; font-weight: 500;">Redis Cache</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="code-snippet" style="background-color: #1e293b; border-radius: 8px; overflow: hidden; margin: 1.5rem 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+                                            <div style="background-color: #0f172a; padding: 0.5rem 1rem; color: #e2e8f0; font-size: 0.85rem; font-family: 'SF Mono', 'Menlo', monospace; display: flex; justify-content: space-between;">
+                                                <span>game-handler.ts</span>
+                                                <div style="display: flex; gap: 8px;">
+                                                    <span style="opacity: 0.6;">TypeScript</span>
+                                                    <span style="opacity: 0.6;">●</span>
+                                                </div>
+                                            </div>
+                                            <pre style="margin: 0; padding: 1rem; color: #e2e8f0; overflow-x: auto; font-family: 'SF Mono', 'Menlo', monospace; font-size: 0.85rem; line-height: 1.5;"><code>// Game Service WebSocket handler example
+class ChessGameHandler {
+  async handleMove(gameId: string, move: Move) {
+    const game = await this.gameState.get(gameId);
+    
+    // Validate move
+    if (!this.isValidMove(game, move)) {
+      throw new Error('Invalid move');
+    }
+    
+    // Update game state
+    const updatedGame = this.applyMove(game, move);
+    
+    // Broadcast to both players
+    await this.broadcast(gameId, {
+      type: 'MOVE_UPDATE',
+      game: updatedGame
+    });
+    
+    // Check for game end
+    if (this.isGameOver(updatedGame)) {
+      await this.handleGameEnd(gameId, updatedGame);
+    }
+  }
+}</code></pre>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="section">
+                                        <h2>3. Data Model</h2>
+                                        <p>Our data model needs to efficiently represent game states and player information:</p>
+                                        
+                                        <div class="data-model-diagram">
+                                            <div class="entity game-entity">
+                                                <div class="entity-header">Game</div>
+                                                <div class="entity-fields">
+                                                    <div>id: UUID (PK)</div>
+                                                    <div>whitePlayerId: UUID (FK)</div>
+                                                    <div>blackPlayerId: UUID (FK)</div>
+                                                    <div>currentPosition: JSON</div>
+                                                    <div>moveHistory: JSON[]</div>
+                                                    <div>status: ENUM</div>
+                                                </div>
+                                            </div>
+                                            <div class="entity-relation">N:1</div>
+                                            <div class="entity player-entity">
+                                                <div class="entity-header">Player</div>
+                                                <div class="entity-fields">
+                                                    <div>id: UUID (PK)</div>
+                                                    <div>username: VARCHAR</div>
+                                                    <div>rating: INTEGER</div>
+                                                    <div>gamesPlayed: INTEGER</div>
+                                                    <div>wins: INTEGER</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="code-snippet">
+                                            <pre><code>// PostgreSQL Schema example
+CREATE TABLE games (
+  id UUID PRIMARY KEY,
+  white_player_id UUID REFERENCES players(id),
+  black_player_id UUID REFERENCES players(id),
+  current_position JSONB NOT NULL,
+  move_history JSONB[] NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE players (
+  id UUID PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  rating INTEGER NOT NULL DEFAULT 1500,
+  games_played INTEGER NOT NULL DEFAULT 0,
+  wins INTEGER NOT NULL DEFAULT 0
+);</code></pre>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="section">
+                                        <h2>4. Scalability & Performance</h2>
+                                        <p>To handle our scalability requirements, we'll implement several strategies:</p>
+                                        
+                                        <div class="strategies-grid">
+                                            <div class="strategy-card">
+                                                <div class="strategy-icon">🎮</div>
+                                                <div class="strategy-title">Game State Management</div>
+                                                <div class="strategy-desc">Redis for active game states with PostgreSQL for persistence</div>
+                                            </div>
+                                            <div class="strategy-card">
+                                                <div class="strategy-icon">⚡</div>
+                                                <div class="strategy-title">WebSocket Clustering</div>
+                                                <div class="strategy-desc">Sticky sessions and Redis pub/sub for real-time updates</div>
+                                            </div>
+                                            <div class="strategy-card">
+                                                <div class="strategy-icon">🎯</div>
+                                                <div class="strategy-title">Matchmaking</div>
+                                                <div class="strategy-desc">Rating-based matchmaking with queue system</div>
+                                            </div>
+                                            <div class="strategy-card">
+                                                <div class="strategy-icon">🔍</div>
+                                                <div class="strategy-title">Anti-Cheat</div>
+                                                <div class="strategy-desc">Server-side move validation and state verification</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bottleneck-analysis">
+                                            <h4>Potential Bottlenecks:</h4>
+                                            <table>
+                                                <tr>
+                                                    <th>Component</th>
+                                                    <th>Issue</th>
+                                                    <th>Solution</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Game State</td>
+                                                    <td>High memory usage for active games</td>
+                                                    <td>Redis cluster with sharding</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>WebSocket</td>
+                                                    <td>Connection overhead</td>
+                                                    <td>Connection pooling + keep-alive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Matchmaking</td>
+                                                    <td>Queue processing delays</td>
+                                                    <td>Distributed queue system</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="section">
+                                        <h2>5. Security & Reliability</h2>
+                                        <p>Implementing robust security measures and ensuring fault tolerance:</p>
+                                        
+                                        <div class="security-features">
+                                            <div class="feature-item">
+                                                <h4>Game Integrity</h4>
+                                                <p>Server-side validation of all moves and game states:</p>
+                                                <div class="code-snippet">
+                                                    <pre><code>// Move validation example
+function validateMove(game: Game, move: Move): boolean {
+  // Check if it's the player's turn
+  if (game.currentTurn !== move.playerId) {
+    return false;
+  }
+  
+  // Validate piece movement
+  const piece = game.board[move.from];
+  if (!isValidPieceMovement(piece, move)) {
+    return false;
+  }
+  
+  // Check for check/checkmate
+  const newState = simulateMove(game, move);
+  if (isInCheck(newState, move.playerId)) {
+    return false;
+  }
+  
+  return true;
+}</code></pre>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="feature-item">
+                                                <h4>Fault Tolerance</h4>
+                                                <p>Implementing game state recovery and connection handling:</p>
+                                                <div class="architecture-diagram fault-tolerance">
+                                                    <div class="primary-node">Game Server A</div>
+                                                    <div class="fallback-arrow">→</div>
+                                                    <div class="fallback-node">Game Server B</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="chat-container" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.5); border-radius: 8px; padding: 1.5rem; overflow-y: auto; border: 1px solid rgba(0, 0, 0, 0.05);">
+                        </div>
+                    </div>
+
+                    
+                    <!-- Add Cenvoy window to scene5 -->
+                    <div class="cenvoy-window" style="position: absolute; width: 850px; height: 650px; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.85); border-radius: 14px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); overflow: hidden; z-index: 100;">
+                        <div style="padding: 1.2rem; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 44px; background: linear-gradient(90deg, var(--primary-color), #4a63ee); border-radius: 10px; display: flex; align-items: center; padding: 0 1rem; color: white; margin-bottom: 1.2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                                <div style="display: flex; align-items: center; font-weight: 500;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right: 8px;">
+                                        <path d="M19.7071 4.29289C20.0976 4.68342 20.0976 5.31658 19.7071 5.70711L9.70711 15.7071C9.31658 16.0976 8.68342 16.0976 8.29289 15.7071L4.29289 11.7071C3.90237 11.3166 3.90237 10.6834 4.29289 10.2929C4.68342 9.90237 5.31658 9.90237 5.70711 10.2929L9 13.5858L18.2929 4.29289C18.6834 3.90237 19.3166 3.90237 19.7071 4.29289Z" fill="white"/>
+                                    </svg>
+                                    <span>Cenvoy AI Assistant</span>
+                                </div>
+                                <div style="margin-left: auto; display: flex; gap: 12px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity: 0.8;">
+                                        <path d="M9 5C7.89543 5 7 5.89543 7 7V17C7 18.1046 7.89543 19 9 19H15C16.1046 19 17 18.1046 17 17V7C17 5.89543 16.1046 5 15 5H9Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity: 0.8;">
+                                        <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="chat-container" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.7); border-radius: 10px; padding: 1.5rem; overflow-y: auto; border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);">
                                 <!-- Chat messages will be added here dynamically -->
-                                    </div>
+                            </div>
                             
                             <div style="position: relative; margin-top: 1.5rem;">
-                                    <input type="text" placeholder="Ask a follow-up question..." style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.1); background-color: white; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem;">
-                                    <button style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background-color: var(--primary-color); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-arrow-up" style="font-size: 12px;"></i>
-                                    </button>
+                                <input type="text" placeholder="Ask a follow-up question..." style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.08); background-color: white; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 219, 171, 0.1); font-size: 1rem; font-family: inherit; transition: all 0.2s ease;">
+                                <button style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: linear-gradient(90deg, var(--secondary-color), #34c999); color: var(--dark-color); border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); transition: all 0.2s ease;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="margin-left: 2px;">
+                                        <path d="M13 5L21 12L13 19M21 12H3" stroke="var(--dark-color)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <style>
-                    .scene5 .system-design-tutorial {
-                        display: none;
-                    }
-                </style>
             `
         },
         {
@@ -975,9 +1238,7 @@ This format makes complex medical information easy to digest and provides a valu
                                     <div style="background-color: rgba(220, 220, 220, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 0.9rem; line-height: 1.5; color: #000; max-width: 80%;">
                                         <p style="margin: 0 0 12px 0; font-weight: bold; color: #000;">Interviewee</p>
                                         
-                                        <p style="margin: 0 0 12px 0; color: #000;">Let me address each point:</p>
-                                        
-                                        <p style="margin: 0 0 8px 0; color: #000;"><strong>1. Peak Load Handling</strong></p>
+                                        <p style="margin: 0 0 12px 0; color: #000;"><strong>1. Peak Load Handling</strong></p>
                                         <ul style="margin: 0 0 12px 20px; padding: 0; color: #000;">
                                             <li><strong>Scalability</strong>: We'd likely scale horizontally for our Game Service using container orchestration (e.g., Kubernetes). Each container handles a subset of active games.</li>
                                             <li><strong>Load Balancer</strong>: Directs requests or WebSocket connections to an appropriate container with minimal load.</li>
