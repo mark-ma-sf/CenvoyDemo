@@ -729,6 +729,90 @@ function validateMove(game: Game, move: Move): boolean {
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Add Cenvoy window to scene5 -->
+                    <div class="cenvoy-window" style="position: absolute; width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.7); border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.3); overflow: hidden;">
+                        <div style="padding: 1rem; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 40px; background-color: var(--primary-color); border-radius: 8px; display: flex; align-items: center; padding: 0 1rem; color: white; margin-bottom: 1rem;">
+                                <span style="font-weight: 500;">Cenvoy AI Assistant</span>
+                                <div style="margin-left: auto; display: flex; gap: 10px;">
+                                    <i class="fas fa-cog" style="font-size: 14px; opacity: 0.8;"></i>
+                                    <i class="fas fa-times" style="font-size: 14px; opacity: 0.8;"></i>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.5); border-radius: 8px; padding: 1.5rem; overflow-y: auto; border: 1px solid rgba(0, 0, 0, 0.05);">
+                                <!-- Interview title -->
+                                <div style="text-align: center; margin-bottom: 1rem;">
+                                    <h3 style="color: var(--dark-color); margin: 0;">Chess Game System Design Interview</h3>
+                                </div>
+                                
+                                <!-- First message: Interviewer -->
+                                <div style="display: flex; margin-bottom: 1.5rem;">
+                                    <div style="width: 32px; height: 32px; background-color: #444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user" style="font-size: 14px;"></i>
+                                    </div>
+                                    <div style="background-color: rgba(220, 220, 220, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; color: #000;">We want to build a chess game system with the ability to revert the last move. At a high level:</p>
+                                        
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li>We have players who can create and join games.</li>
+                                            <li>The system needs to handle user input (moves) and enforce chess rules.</li>
+                                            <li>Crucially, we want a feature that allows players to revert the immediately preceding move.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0; color: #000;">Could you give me your initial thoughts on how you'd approach this design? Include your assumptions, major functionalities, and a rough high-level architecture.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Second message: Interviewee -->
+                                <div style="display: flex; margin-bottom: 1.5rem; justify-content: flex-end;">
+                                    <div style="background-color: rgba(74, 99, 238, 0.15); padding: 15px 20px; border-radius: 12px 0 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; color: #000;"><strong>1. Understanding & Use Cases</strong></p>
+                                        
+                                        <ol style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Play Chess</strong>: Two players (or AI vs. human) interact with a board via moves.</li>
+                                            <li><strong>Revert Last Move</strong>: Ability for a player to request undoing the most recent move, if allowed by the game rules or settings.</li>
+                                            <li><strong>Game State Management</strong>: System must keep track of board state, moves history, timers, and game outcomes.</li>
+                                            <li><strong>User Management</strong>: Players authenticate and create accounts, maintain rating/score.</li>
+                                            <li><strong>Game Matching & Creation</strong>: Quick match or custom invites.</li>
+                                        </ol>
+                                        
+                                        <p style="margin: 0 0 15px 0; color: #000;"><strong>2. High-Level Architecture</strong></p>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;">Frontend (Web/Mobile App):</p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li>Displays the chess board UI, captures user moves</li>
+                                            <li>Communicates with backend via WebSockets</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;">Backend Services:</p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Game Service</strong>: Verifies moves, maintains state, keeps move log for undo</li>
+                                            <li><strong>User Service</strong>: Authentication, profiles, ratings</li>
+                                            <li><strong>Matchmaking Service</strong>: Game creation, pairing players</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;">Data Storage:</p>
+                                        <ul style="margin: 0 0 0 20px; padding: 0; color: #000;">
+                                            <li>DB for user profiles, game states, move history</li>
+                                            <li>Redis cache for active game states</li>
+                                            <li>Move stack for easy undo functionality</li>
+                                        </ul>
+                                    </div>
+                                    <div style="width: 32px; height: 32px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user-tie" style="font-size: 14px;"></i>
+                                    </div>
+                                </div>
+                                
+                                <div style="position: relative; margin-top: 1.5rem;">
+                                    <input type="text" placeholder="Ask a follow-up question..." style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.1); background-color: white; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem;">
+                                    <button style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background-color: var(--primary-color); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-arrow-up" style="font-size: 12px;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <style>
                     .system-design-tutorial {
@@ -1258,6 +1342,46 @@ function validateMove(game: Game, move: Move): boolean {
                     step.classList.add('visible');
                 }, 500 + (index * 500));
             });
+            
+            // Add AI assistant window similar to scene2
+            setTimeout(() => {
+                const cenvoyWindow = document.querySelector('.scene5 .cenvoy-window');
+                if (cenvoyWindow) cenvoyWindow.classList.add('active');
+                
+                // Add chat scroll animation
+                const chatContainer = document.querySelector('.scene5 .cenvoy-window div[style*="overflow-y: auto"]');
+                if (chatContainer) {
+                    // Reset scroll position to top
+                    chatContainer.scrollTop = 0;
+                    
+                    // Create a smooth scrolling animation after window appears
+                    setTimeout(() => {
+                        const scrollHeight = chatContainer.scrollHeight;
+                        const duration = 3000; // 3 seconds to scroll
+                        const startTime = Date.now();
+                        
+                        // Clear any existing animation
+                        if (window.chatScrollInterval) {
+                            clearInterval(window.chatScrollInterval);
+                        }
+                        
+                        // Create new scroll animation
+                        const scrollInterval = setInterval(() => {
+                            const elapsed = Date.now() - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            if (progress < 1) {
+                                chatContainer.scrollTop = scrollHeight * progress;
+                            } else {
+                                clearInterval(scrollInterval);
+                            }
+                        }, 16); // ~60fps
+                        
+                        // Store interval for cleanup
+                        window.chatScrollInterval = scrollInterval;
+                    }, 1500); // Start scrolling 1.5s after window appears
+                }
+            }, 1000);
         } else if (sceneId === "6") {
             animateScene6Cards();
         } else if (sceneId === "7") {
