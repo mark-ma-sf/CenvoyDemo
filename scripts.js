@@ -680,51 +680,6 @@ CREATE TABLE players (
                                             </table>
                                         </div>
                                     </div>
-                                    
-                                    <div class="section">
-                                        <h2>5. Security & Reliability</h2>
-                                        <p>Implementing robust security measures and ensuring fault tolerance:</p>
-                                        
-                                        <div class="security-features">
-                                            <div class="feature-item">
-                                                <h4>Game Integrity</h4>
-                                                <p>Server-side validation of all moves and game states:</p>
-                                                <div class="code-snippet">
-                                                    <pre><code>// Move validation example
-function validateMove(game: Game, move: Move): boolean {
-  // Check if it's the player's turn
-  if (game.currentTurn !== move.playerId) {
-    return false;
-  }
-  
-  // Validate piece movement
-  const piece = game.board[move.from];
-  if (!isValidPieceMovement(piece, move)) {
-    return false;
-  }
-  
-  // Check for check/checkmate
-  const newState = simulateMove(game, move);
-  if (isInCheck(newState, move.playerId)) {
-    return false;
-  }
-  
-  return true;
-}</code></pre>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="feature-item">
-                                                <h4>Fault Tolerance</h4>
-                                                <p>Implementing game state recovery and connection handling:</p>
-                                                <div class="architecture-diagram fault-tolerance">
-                                                    <div class="primary-node">Game Server A</div>
-                                                    <div class="fallback-arrow">→</div>
-                                                    <div class="fallback-node">Game Server B</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -741,17 +696,13 @@ function validateMove(game: Game, move: Move): boolean {
                                 </div>
                             </div>
                             <div style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.5); border-radius: 8px; padding: 1.5rem; overflow-y: auto; border: 1px solid rgba(0, 0, 0, 0.05);">
-                                <!-- Interview title -->
-                                <div style="text-align: center; margin-bottom: 1rem;">
-                                    <h3 style="color: var(--dark-color); margin: 0;">Chess Game System Design Interview</h3>
-                                </div>
-                                
                                 <!-- First message: Interviewer -->
                                 <div style="display: flex; margin-bottom: 1.5rem;">
                                     <div style="width: 32px; height: 32px; background-color: #444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
                                         <i class="fas fa-user" style="font-size: 14px;"></i>
                                     </div>
                                     <div style="background-color: rgba(220, 220, 220, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewer</p>
                                         <p style="margin: 0 0 15px 0; color: #000;">We want to build a chess game system with the ability to revert the last move. At a high level:</p>
                                         
                                         <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
@@ -767,37 +718,408 @@ function validateMove(game: Game, move: Move): boolean {
                                 <!-- Second message: Interviewee -->
                                 <div style="display: flex; margin-bottom: 1.5rem; justify-content: flex-end;">
                                     <div style="background-color: rgba(74, 99, 238, 0.15); padding: 15px 20px; border-radius: 12px 0 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewee</p>
+                                        
                                         <p style="margin: 0 0 15px 0; color: #000;"><strong>1. Understanding & Use Cases</strong></p>
                                         
                                         <ol style="margin: 0 0 15px 20px; padding: 0; color: #000;">
                                             <li><strong>Play Chess</strong>: Two players (or AI vs. human) interact with a board via moves.</li>
                                             <li><strong>Revert Last Move</strong>: Ability for a player to request undoing the most recent move, if allowed by the game rules or settings.</li>
-                                            <li><strong>Game State Management</strong>: System must keep track of board state, moves history, timers, and game outcomes.</li>
+                                            <li><strong>Game State Management</strong>: System must keep track of board state, moves history, timers, and game outcomes (checkmate, draw, resignation).</li>
                                             <li><strong>User Management</strong>: Players authenticate and create accounts, maintain rating/score.</li>
-                                            <li><strong>Game Matching & Creation</strong>: Quick match or custom invites.</li>
+                                            <li><strong>Game Matching & Creation</strong>:
+                                                <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li>Quick match or custom invites.</li>
+                                                    <li>Potentially, real-time notifications when matches start or moves are made.</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Scalability</strong>: Potentially thousands of concurrent games at peak times.</li>
                                         </ol>
                                         
-                                        <p style="margin: 0 0 15px 0; color: #000;"><strong>2. High-Level Architecture</strong></p>
+                                        <p style="margin: 0 0 15px 0; color: #000;"><strong>2. Assumptions</strong></p>
                                         
-                                        <p style="margin: 0 0 10px 0; color: #000;">Frontend (Web/Mobile App):</p>
                                         <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
-                                            <li>Displays the chess board UI, captures user moves</li>
-                                            <li>Communicates with backend via WebSockets</li>
+                                            <li>We assume this is a real-time, online chess platform.</li>
+                                            <li>We assume players are primarily using web or mobile clients.</li>
+                                            <li>We might store game states for up to millions of active games at once.</li>
+                                            <li>Latency is important: Moves must be reflected in &lt;200ms to ensure a smooth user experience.</li>
                                         </ul>
                                         
-                                        <p style="margin: 0 0 10px 0; color: #000;">Backend Services:</p>
-                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
-                                            <li><strong>Game Service</strong>: Verifies moves, maintains state, keeps move log for undo</li>
-                                            <li><strong>User Service</strong>: Authentication, profiles, ratings</li>
-                                            <li><strong>Matchmaking Service</strong>: Game creation, pairing players</li>
-                                        </ul>
+                                        <p style="margin: 0 0 15px 0; color: #000;"><strong>3. High-Level Architecture (Initial Sketch)</strong></p>
                                         
-                                        <p style="margin: 0 0 10px 0; color: #000;">Data Storage:</p>
+                                        <ol style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Frontend (Web/Mobile App)</strong>:
+                                                <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li>Displays the chess board UI, captures user moves, requests undo, and updates game state.</li>
+                                                    <li>Communicates with backend via WebSockets or HTTP (real-time vs. turn-based).</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Backend Services</strong>:
+                                                <ol style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li><strong>Game Service</strong>:
+                                                        <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                            <li>Orchestrates chess logic: verifies valid moves, maintains in-memory or near real-time state.</li>
+                                                            <li>Keeps a log (stack) of moves for easy revert/undo functionality.</li>
+                                                            <li>Possibly uses a rules engine or library for chess validations (e.g., checking if a move is legal).</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>User Service</strong>:
+                                                        <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                            <li>Authentication, user profiles, rating, match history.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>Matchmaking Service</strong>:
+                                                        <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                            <li>Manages game creation, pairing players, or custom invites.</li>
+                                                        </ul>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li><strong>Data Storage</strong>:
+                                                <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li><strong>Transactional DB</strong> (SQL or NoSQL) for user profiles, game states, moves history.</li>
+                                                    <li>In-memory cache (e.g., Redis) for quick lookups of active game states.</li>
+                                                    <li>The <strong>undo</strong> functionality can be implemented by storing previous states or a moves log so we can revert to the prior state.</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Real-Time Communication</strong>:
+                                                <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li>WebSocket layer for push notifications about opponent moves and game events.</li>
+                                                </ul>
+                                            </li>
+                                        </ol>
+                                        
+                                        <p style="margin: 0 0 15px 0; color: #000;"><strong>4. Broad Technologies & Design Patterns</strong></p>
+                                        
                                         <ul style="margin: 0 0 0 20px; padding: 0; color: #000;">
-                                            <li>DB for user profiles, game states, move history</li>
-                                            <li>Redis cache for active game states</li>
-                                            <li>Move stack for easy undo functionality</li>
+                                            <li><strong>Microservices</strong> approach (User Service, Game Service, Matchmaking).</li>
+                                            <li><strong>Event-Driven</strong> or at least asynchronous notifications.</li>
+                                            <li><strong>Caching</strong> with Redis to store current board states for quick retrieval and minimal DB overhead.</li>
+                                            <li><strong>Message Queue</strong> (e.g., RabbitMQ, Kafka) for events if we expand to more complex features (like analytics, game streaming).</li>
                                         </ul>
+                                    </div>
+                                    <div style="width: 32px; height: 32px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user-tie" style="font-size: 14px;"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Third message: Interviewer (follow-up) -->
+                                <div style="display: flex; margin-bottom: 1.5rem;">
+                                    <div style="width: 32px; height: 32px; background-color: #444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user" style="font-size: 14px;"></i>
+                                    </div>
+                                    <div style="background-color: rgba(220, 220, 220, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewer</p>
+                                        <p style="margin: 0 0 15px 0; color: #000;">Based on that initial design, I have a few follow-up questions:</p>
+                                        
+                                        <ol style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Peak Load Handling</strong>: How do you plan to handle peak times when thousands of games might be going on simultaneously?</li>
+                                            <li><strong>Important Metrics & SLAs</strong>: What are the primary metrics and SLAs for our chess platform?</li>
+                                            <li><strong>User Interaction Flow</strong>: Can you clarify how users interact with the system, from creating a game to finishing a match?</li>
+                                            <li><strong>Geographical Considerations</strong>: Is the platform deployed in multiple regions? How do you handle latency across regions if, say, two players are in different continents?</li>
+                                            <li><strong>Undo Feature</strong>: Can you elaborate on how you'd implement the revert/undo functionality, ensuring no data corruption?</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                
+                                <!-- Fourth message: Interviewee (answering follow-ups) -->
+                                <div style="display: flex; margin-bottom: 1.5rem; justify-content: flex-end;">
+                                    <div style="background-color: rgba(74, 99, 238, 0.15); padding: 15px 20px; border-radius: 12px 0 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewee</p>
+                                        
+                                        <p style="margin: 0 0 15px 0; color: #000;">Let me address each point:</p>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>1. Peak Load Handling</strong></p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Scalability</strong>: We'd likely scale horizontally for our Game Service using container orchestration (e.g., Kubernetes). Each container handles a subset of active games.</li>
+                                            <li><strong>Load Balancer</strong>: Directs requests or WebSocket connections to an appropriate container with minimal load.</li>
+                                            <li><strong>Caching</strong>: Keep active game states in an in-memory store so that read/writes for the top ~10% of active games are extremely fast, offloading the main database.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>2. Important Metrics & SLAs</strong></p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Latency</strong>: P99 time for a move to be validated and visible to the opponent under 200ms.</li>
+                                            <li><strong>Availability</strong>: 99.99% uptime for real-time gameplay.</li>
+                                            <li><strong>Throughput</strong>: Number of moves processed per second, number of concurrent games.</li>
+                                            <li><strong>Error Rates</strong>: Rate of invalid moves or system errors.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>3. User Interaction Flow</strong></p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Registration/Login</strong>: A new user signs up, or logs in.</li>
+                                            <li><strong>Create/Join Game</strong>: The user either creates a new match or joins an existing (public or private) match.</li>
+                                            <li><strong>In-Game Moves</strong>: Each move is submitted to the Game Service, which validates legality and updates the board.</li>
+                                            <li><strong>Revert Last Move</strong>: If the feature is allowed (by game settings or mutual agreement), a request is sent to revert. The system pops the top move from the moves log and updates the board to the previous state.</li>
+                                            <li><strong>Game Conclusion</strong>: Checkmate, stalemate, or resignation triggers the game record to finalize in the DB.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>4. Geographical Considerations</strong></p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Multi-Region Deployment</strong>: We can place servers in multiple regions to reduce latency. If players are from different continents, we may pick the region in the middle or replicate game state across data centers using a consistent, low-latency approach.</li>
+                                            <li><strong>Data Synchronization</strong>: We'd consider a global load balancer or anycast-based approach so that both players connect to a region with minimal round-trip time.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>5. Undo/Revert Implementation</strong></p>
+                                        <ul style="margin: 0 0 0 20px; padding: 0; color: #000;">
+                                            <li><strong>Move Stack</strong>: For each game, we store moves in a stack-like structure. The top of the stack is the latest move.</li>
+                                            <li><strong>Immutable Game States</strong>: Each move transition from state <code>S(n-1)</code> to <code>S(n)</code>. We can store <code>S(n)</code> or store only the move deltas.</li>
+                                            <li><strong>Rollback</strong>: To revert, we pop the top move and revert to <code>S(n-1)</code>.</li>
+                                            <li><strong>Data Integrity</strong>: We'll keep a short lock on the game state while reverting so no concurrent moves can conflict.</li>
+                                        </ul>
+                                    </div>
+                                    <div style="width: 32px; height: 32px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user-tie" style="font-size: 14px;"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Fifth message: Interviewer (diving deeper) -->
+                                <div style="display: flex; margin-bottom: 1.5rem;">
+                                    <div style="width: 32px; height: 32px; background-color: #444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user" style="font-size: 14px;"></i>
+                                    </div>
+                                    <div style="background-color: rgba(220, 220, 220, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewer</p>
+                                        <p style="margin: 0 0 15px 0; color: #000;">Let's zoom in on the <strong>Game Service</strong>. Specifically:</p>
+                                        
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li>How are you managing real-time state updates within the service?</li>
+                                            <li>How do you ensure consistency and handle concurrency, especially if both players act near-simultaneously?</li>
+                                            <li>Could you provide more details on how you store and retrieve board states, including the moves needed for undo?</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <!-- Sixth message: Interviewee (detailed Game Service design) -->
+                                <div style="display: flex; margin-bottom: 1.5rem; justify-content: flex-end;">
+                                    <div style="background-color: rgba(74, 99, 238, 0.15); padding: 15px 20px; border-radius: 12px 0 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewee</p>
+                                        
+                                        <p style="margin: 0 0 15px 0; color: #000;"><strong>Detailed Design for the Game Service</strong></p>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>1. Architecture & State Management</strong></p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li>Each active game can be represented by an in-memory object (let's call it a <code>GameSession</code>) hosted in one container instance. This object has:
+                                                <ol style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li><strong>Current Board Position</strong>: Using a 2D matrix or a specialized chess representation (e.g., Forsyth–Edwards Notation).</li>
+                                                    <li><strong>Moves Log</strong>: A stack/array containing the sequence of moves. Each move includes the piece moved, start position, end position, captured piece if any, etc.</li>
+                                                </ol>
+                                            </li>
+                                            <li>For scaling, we might adopt a <strong>sharding</strong> approach where each container can handle a range of game IDs or a consistent hash based on the game's ID.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>2. Concurrency & Consistency</strong></p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Locking</strong>: When a player attempts a move or an undo, we lock that <code>GameSession</code> so no other conflicting action modifies it at the same moment. Once validated and updated, we release the lock.</li>
+                                            <li><strong>Event Sequence</strong>: Because only one move can occur at a time in standard chess, we enforce a queue of actions. The system processes actions in the order they arrive to the server.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>3. Storage of Board States & Moves</strong></p>
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>In-Memory for Active Games</strong>: We keep the current board plus the move stack in memory for quick access.</li>
+                                            <li><strong>Persistency</strong>: Periodically or after each move, we persist a minimal representation to the database—like the latest state plus the move that got us here.</li>
+                                            <li><strong>Undo</strong>: When a revert is requested, we pop from the moves stack in memory. We also update or "append a revert event" to the database so that the final record stays consistent.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>4. Illustrative Diagram (Textual)</strong></p>
+                                        <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; font-size: 0.9rem; color: #333; white-space: pre; overflow: auto; margin: 0 0 15px 0;">
++----------------+       +----------------+
+|  Game Service  | <---- |  User Service  |
+| (In-memory)    |       |               |
+|  - GameSession |       +----------------+
+|  - Move Stack  | <--> Database
++----------------+
+      ^  ^
+      |  |
+WebSockets / REST
+      |  |
+  Player Clients
+                                        </pre>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>Failure Modes & Mitigation</strong>:</p>
+                                        <ul style="margin: 0 0 0 20px; padding: 0; color: #000;">
+                                            <li>If a container crashes, we can <strong>rebuild</strong> the current game state from the last known persisted state plus the move logs in the DB.</li>
+                                            <li>We might keep a <strong>replicated in-memory</strong> store (like Redis with clustering) that has the most recent states to reduce the recovery time.</li>
+                                        </ul>
+                                    </div>
+                                    <div style="width: 32px; height: 32px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user-tie" style="font-size: 14px;"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Seventh message: Interviewer (performance and SLAs) -->
+                                <div style="display: flex; margin-bottom: 1.5rem;">
+                                    <div style="width: 32px; height: 32px; background-color: #444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user" style="font-size: 14px;"></i>
+                                    </div>
+                                    <div style="background-color: rgba(220, 220, 220, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewer</p>
+                                        <p style="margin: 0 0 15px 0; color: #000;">Now let's talk about performance and how you meet SLAs:</p>
+                                        
+                                        <ol style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li>Could you share a rough capacity plan for daily active users and moves per second?</li>
+                                            <li>Where do you see potential bottlenecks in this design, and how would you address them?</li>
+                                            <li>How does the system achieve the 99.99% availability target?</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                
+                                <!-- Eighth message: Interviewee (performance and capacity planning) -->
+                                <div style="display: flex; margin-bottom: 1.5rem; justify-content: flex-end;">
+                                    <div style="background-color: rgba(74, 99, 238, 0.15); padding: 15px 20px; border-radius: 12px 0 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewee</p>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>1. Rough Capacity Planning</strong></p>
+                                        
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li>Suppose we have <strong>10 million</strong> daily active users (DAUs).</li>
+                                            <li>Each user plays on average <strong>2 games</strong> per day, each game with about <strong>40 moves</strong> (80 ply in chess parlance, but we'll say 40 moves per side).</li>
+                                            <li>That's <code>10M * 2 * 40 = 800M moves</code> per day.</li>
+                                            <li>Over a 24-hour window, that's roughly <code>800M / 86400 ≈ 9259 moves/second</code> at peak load.</li>
+                                            <li>For storage: Each move might store ~200 bytes of data (piece details, positions, metadata), so that's <code>800M moves * 200 bytes = 160GB</code> of move data per day. Over time, we might compress or archive older games.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>2. Potential Bottlenecks</strong></p>
+                                        
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Game Service</strong>: If a single container tries to handle too many concurrent games, it could slow down. <strong>Solution</strong>: Shard by game ID, horizontally scale containers.</li>
+                                            <li><strong>Database</strong>: Too many writes if each move is instantly persisted. <strong>Solution</strong>:
+                                                <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li>Use <strong>write-behind caching</strong> or <strong>batch writes</strong>.</li>
+                                                    <li>Possibly a <strong>NoSQL</strong> store (like Cassandra) for high write throughput, or a well-tuned relational DB with partitioning.</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Network</strong>: Real-time updates via WebSockets might be high volume. <strong>Solution</strong>:
+                                                <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li>Scale WebSocket servers behind a load balancer.</li>
+                                                    <li>Possibly use specialized WebSocket gateways or CDNs for distributed connectivity.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>3. 99.99% Availability</strong></p>
+                                        
+                                        <ul style="margin: 0 0 0 20px; padding: 0; color: #000;">
+                                            <li><strong>Redundancy</strong>: Each service is deployed across multiple availability zones (AZ) or regions.</li>
+                                            <li><strong>Auto-Recovery</strong>: Health checks automatically restart or reroute traffic if a node fails.</li>
+                                            <li><strong>Rollback Mechanisms</strong>: If any deployment is buggy, canary releases or rolling updates ensure minimal downtime.</li>
+                                            <li><strong>Database Replication</strong>: We have primary + replicas, ensuring failover if the primary DB node crashes.</li>
+                                        </ul>
+                                    </div>
+                                    <div style="width: 32px; height: 32px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user-tie" style="font-size: 14px;"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Ninth message: Interviewer (trade-offs) -->
+                                <div style="display: flex; margin-bottom: 1.5rem;">
+                                    <div style="width: 32px; height: 32px; background-color: #444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user" style="font-size: 14px;"></i>
+                                    </div>
+                                    <div style="background-color: rgba(220, 220, 220, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewer</p>
+                                        <p style="margin: 0 0 15px 0; color: #000;">Let's consider some trade-offs:</p>
+                                        
+                                        <ol style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Consistency vs. Availability</strong>: If we strongly require that no two moves happen simultaneously, we might slow things down. Could we relax consistency for speed?</li>
+                                            <li><strong>Data Store Choices</strong>: If we wanted stronger consistency or simpler rollbacks, might using a single SQL database be easier?</li>
+                                            <li><strong>Future Growth</strong>: How might you adapt your design if we expect 100x growth or want to add more advanced features (e.g., spectator mode, AI analysis)?</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                
+                                <!-- Tenth message: Interviewee (trade-offs and growth) -->
+                                <div style="display: flex; margin-bottom: 1.5rem; justify-content: flex-end;">
+                                    <div style="background-color: rgba(74, 99, 238, 0.15); padding: 15px 20px; border-radius: 12px 0 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewee</p>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>1. Consistency vs. Availability</strong></p>
+                                        
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Chess is inherently sequential</strong>, so strong consistency on moves is critical. We can't accept stale board states.</li>
+                                            <li>However, we can relax consistency in areas like analytics or match-finding (eventual consistency is fine there).</li>
+                                            <li>For the main game loop, we must keep strong consistency, so we accept that concurrency is limited to 1 move at a time per game.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>2. Data Store Choices</strong></p>
+                                        
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Single SQL DB</strong>:
+                                                <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li>Pros: ACID transactions, simpler structure for logging moves and reverting states, easy to do consistent snapshots.</li>
+                                                    <li>Cons: Potential scalability concerns at very high throughput. Sharding a SQL DB can be complex.</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>NoSQL</strong>:
+                                                <ul style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li>Pros: High write throughput, easier horizontal scaling.</li>
+                                                    <li>Cons: Must handle consistency patterns carefully. Might add complexity for transaction-like behavior.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>3. Future Growth & Feature Expansion</strong></p>
+                                        
+                                        <ul style="margin: 0 0 0 20px; padding: 0; color: #000;">
+                                            <li><strong>100x Growth</strong>: We would invest more heavily in horizontally scalable data solutions, possibly adopting a more robust distributed caching layer and sharded NoSQL or a high-scale relational approach (like Vitess).</li>
+                                            <li><strong>New Features</strong>:
+                                                <ol style="margin: 5px 0 5px 20px; padding: 0; color: #000;">
+                                                    <li><strong>Spectator Mode</strong>: Additional real-time load, but we can broadcast events to watchers via a publish/subscribe model.</li>
+                                                    <li><strong>AI Analysis</strong>: Could run asynchronously or in parallel with the main game. Likely separate microservice that consumes game states from an event stream.</li>
+                                                </ol>
+                                            </li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 0 0; color: #000;">Overall, the design is flexible enough to evolve by adding layers (message queue, additional microservices) as complexity grows.</p>
+                                    </div>
+                                    <div style="width: 32px; height: 32px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user-tie" style="font-size: 14px;"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Eleventh message: Interviewer (final summary) -->
+                                <div style="display: flex; margin-bottom: 1.5rem;">
+                                    <div style="width: 32px; height: 32px; background-color: #444; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                        <i class="fas fa-user" style="font-size: 14px;"></i>
+                                    </div>
+                                    <div style="background-color: rgba(220, 220, 220, 0.9); padding: 15px 20px; border-radius: 0 12px 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewer</p>
+                                        <p style="margin: 0 0 15px 0; color: #000;">We're almost out of time. Could you summarize your design and major decisions? Also, how would you validate this design in production, and what refinements would you make if you had more time?</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Final message: Interviewee (summary) -->
+                                <div style="display: flex; margin-bottom: 1.5rem; justify-content: flex-end;">
+                                    <div style="background-color: rgba(74, 99, 238, 0.15); padding: 15px 20px; border-radius: 12px 0 12px 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); font-size: 1rem; line-height: 1.5; color: #000; max-width: 85%;">
+                                        <p style="margin: 0 0 15px 0; font-weight: bold; color: #000;">Interviewee</p>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>1. Summary of the Design</strong></p>
+                                        
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Frontend</strong>: Web/mobile clients that connect via WebSockets/HTTP for real-time play.</li>
+                                            <li><strong>Backend</strong>: Microservices architecture with a <strong>Game Service</strong> that handles the core logic, an <strong>User Service</strong> for authentication/ratings, and a <strong>Matchmaking Service</strong>.</li>
+                                            <li><strong>Data Storage</strong>: A combination of in-memory caching (Redis) for active game states and a persistent data store (SQL or NoSQL) for reliability.</li>
+                                            <li><strong>Undo/Move Reversion</strong>: Implemented via a moves stack/log so we can revert to the last known state with minimal overhead.</li>
+                                            <li><strong>Scalability</strong>: Horizontal scaling of stateless containers, sharding game sessions, plus robust caching to handle thousands of simultaneous games.</li>
+                                            <li><strong>High Availability</strong>: Multi-AZ deployment, replication, load balancing, health checks, and fallback strategies.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>2. Validation in Production</strong></p>
+                                        
+                                        <ul style="margin: 0 0 15px 20px; padding: 0; color: #000;">
+                                            <li><strong>Load Tests</strong>: Simulate thousands of concurrent games to measure throughput, latency, and error rates.</li>
+                                            <li><strong>Chaos Engineering</strong>: Randomly kill containers or inject latency to see how the system recovers.</li>
+                                            <li><strong>Canary Deployments</strong>: Introduce new releases to a small subset of users/games before rolling out platform-wide.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 10px 0; color: #000;"><strong>3. Potential Refinements</strong></p>
+                                        
+                                        <ul style="margin: 0 0 0 20px; padding: 0; color: #000;">
+                                            <li><strong>Refine Data Model</strong>: Possibly unify the moves log with the final board state using a specialized chess notation for easier rollback.</li>
+                                            <li><strong>Enhanced Monitoring</strong>: Collect metrics on move processing time, concurrency, system resource usage.</li>
+                                            <li><strong>Further Optimizations</strong>: Evaluate event-driven or streaming architectures for real-time AI commentary or spectator features.</li>
+                                        </ul>
+                                        
+                                        <p style="margin: 0 0 0 0; color: #000;">With more time, I'd prototype a minimal version of the Game Service, measure performance, and iterate on the data schema to optimize for real-time updates and rapid rollback.</p>
                                     </div>
                                     <div style="width: 32px; height: 32px; background-color: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 12px; flex-shrink: 0;">
                                         <i class="fas fa-user-tie" style="font-size: 14px;"></i>
@@ -1357,7 +1679,7 @@ function validateMove(game: Game, move: Move): boolean {
                     // Create a smooth scrolling animation after window appears
                     setTimeout(() => {
                         const scrollHeight = chatContainer.scrollHeight;
-                        const duration = 3000; // 3 seconds to scroll
+                        const duration = 10000; // 10 seconds to scroll (was 3000)
                         const startTime = Date.now();
                         
                         // Clear any existing animation
@@ -1426,12 +1748,14 @@ function validateMove(game: Game, move: Move): boolean {
             currentScene = currentScene % 7 + 1;
             showScene(currentScene.toString());
             
-            // Set the timer for the next scene - 8s for all scenes
-            autoAdvanceTimer = setTimeout(advanceScene, 8000);
+            // Set the timer for the next scene - 8s for all scenes except scene5
+            const nextDuration = currentScene === 5 ? 12000 : 8000; // 20 seconds for scene5, 8 seconds for others
+            autoAdvanceTimer = setTimeout(advanceScene, nextDuration);
         };
         
         // Initial timer based on the current scene
-        autoAdvanceTimer = setTimeout(advanceScene, 8000);
+        const initialDuration = currentScene === 5 ? 12000 : 8000; // 20 seconds for scene5, 8 seconds for others
+        autoAdvanceTimer = setTimeout(advanceScene, initialDuration);
     }
 
     // Start the auto-advance immediately after page load
