@@ -1384,16 +1384,74 @@ WebSockets / REST
                 }
             }, 1000);
         } else if (sceneId === "6") {
+            // Call animation for scene 6
             animateScene6Cards();
         } else if (sceneId === "7") {
+            // Add animation for scene 7 CTA elements
             setTimeout(() => {
-                document.querySelector('.scene7 .cta-logo').classList.add('visible');
+                const logo = document.querySelector('.scene7 .cta-logo');
+                const tagline = document.querySelector('.scene7 .cta-tagline');
+                const button = document.querySelector('.scene7 .cta-button');
+                
+                if (logo) logo.classList.add('visible');
+                setTimeout(() => {
+                    if (tagline) tagline.classList.add('visible');
+                }, 500);
+                setTimeout(() => {
+                    if (button) button.classList.add('visible');
+                }, 1000);
             }, 500);
-            setTimeout(() => {
-                document.querySelector('.scene7 .cta-tagline').classList.add('visible');
-            }, 1000);
+        }
+        
+        // Set up the fullscreen toggle button after scene content is loaded
+        setupFullscreenButton();
+    }
+
+    // Function to setup fullscreen button
+    function setupFullscreenButton() {
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const sceneDisplay = document.querySelector('.scene-display');
+        
+        if (fullscreenBtn && sceneDisplay) {
+            fullscreenBtn.innerHTML = document.fullscreenElement ? '<i class="fas fa-compress"></i>' : '<i class="fas fa-expand"></i>';
+            
+            fullscreenBtn.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    // Enter fullscreen
+                    if (sceneDisplay.requestFullscreen) {
+                        sceneDisplay.requestFullscreen().then(() => {
+                            sceneDisplay.classList.add('fullscreen-mode');
+                            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                        });
+                    }
+                } else {
+                    // Exit fullscreen
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen().then(() => {
+                            sceneDisplay.classList.remove('fullscreen-mode');
+                            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                        }).catch(err => {
+                            console.error('Error exiting fullscreen:', err);
+                        });
+                    }
+                }
+            });
         }
     }
+
+    // Listen for fullscreen change events to handle browser controls
+    document.addEventListener('fullscreenchange', () => {
+        const sceneDisplay = document.querySelector('.scene-display');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        
+        if (!document.fullscreenElement && sceneDisplay.classList.contains('fullscreen-mode')) {
+            // User exited fullscreen using browser controls
+            sceneDisplay.classList.remove('fullscreen-mode');
+            if (fullscreenBtn) {
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+    });
 
     // Add sceneData globally available
     window.sceneData = sceneData;

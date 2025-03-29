@@ -883,6 +883,12 @@ footer .logo img {
     border-color: inherit !important;
 }
 
+/* Re-enable the fullscreen button */
+#fullscreen-btn {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
 /* Make scene selector non-interactive but still visible */
 .non-interactive {
     pointer-events: none !important;
@@ -891,4 +897,51 @@ footer .logo img {
 .non-interactive * {
     cursor: default !important;
     pointer-events: none !important;
+}
+
+.fullscreen-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+#fullscreen-btn {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#fullscreen-btn:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.fullscreen-mode {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 9999;
+    background-color: var(--light-color);
+}
+
+.fullscreen-mode .scene-animation {
+    min-height: 85vh;
+}
+
+.fullscreen-mode .scene-narration {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
 } 
