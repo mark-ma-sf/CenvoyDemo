@@ -52,6 +52,12 @@ header .container {
     color: var(--primary-color);
 }
 
+.logo img {
+    max-height: 40px;
+    width: auto;
+    vertical-align: middle;
+}
+
 nav ul {
     display: flex;
     list-style: none;
@@ -357,6 +363,11 @@ footer .logo {
     color: var(--primary-color);
 }
 
+footer .logo img {
+    max-height: 35px;
+    width: auto;
+}
+
 .social-links {
     display: flex;
     gap: 1.5rem;
@@ -641,8 +652,6 @@ footer .logo {
 .scene4 .scrollable-textarea::-webkit-scrollbar {
     display: none !important;
 }
-
-
 
 /* Scene 5: Powerful Workflows */
 .scene5 {
