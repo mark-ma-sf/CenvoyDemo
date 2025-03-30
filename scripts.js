@@ -1587,4 +1587,113 @@ WebSockets / REST
         e.preventDefault();
         return false;
     });
+
+    // Mobile navigation functionality
+    function setupMobileNav() {
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navMenu = document.querySelector('nav ul');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        if (mobileNavToggle && navMenu && navOverlay) {
+            // Toggle menu when button is clicked
+            mobileNavToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                // Change icon based on menu state
+                const icon = this.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when overlay is clicked
+            navOverlay.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                navOverlay.classList.remove('active');
+                const icon = mobileNavToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+
+            // Close menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    const icon = mobileNavToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+    }
+
+    // Initialize scene animations
+    window.sceneData = sceneData;
+    setupScenes();
+    setupFullscreenButton();
+    startAutoAdvance();
+    disableInteractions();
+
+    // Initialize mobile navigation
+    setupMobileNav();
+    
+    // Fix for iOS viewport height issues
+    function fixIOSViewportHeight() {
+        // Check if the device is iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        
+        if (isIOS) {
+            // First, set a custom property with the viewport height
+            const setVH = () => {
+                // Get the viewport height and multiply by 1% to get a vh unit value
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+                
+                // Apply the height to scene-animation and Cenvoy windows
+                adjustCenvoyWindowHeight();
+            };
+            
+            // Adjust Cenvoy window height for iOS
+            const adjustCenvoyWindowHeight = () => {
+                const cenvoyWindows = document.querySelectorAll('.scene2 .cenvoy-window, .scene5 .cenvoy-window');
+                const sceneAnimation = document.querySelector('.scene-animation');
+                
+                if (sceneAnimation) {
+                    sceneAnimation.style.height = `calc(var(--vh, 1vh) * 60)`;
+                }
+                
+                cenvoyWindows.forEach(window => {
+                    // Set a height that works better on iOS
+                    window.style.height = `calc(var(--vh, 1vh) * 55)`;
+                    window.style.maxHeight = `calc(var(--vh, 1vh) * 60)`;
+                    
+                    // Ensure inner content is scrollable
+                    const contentContainers = window.querySelectorAll('div[style*="flex-grow: 1"], #chat-container');
+                    contentContainers.forEach(container => {
+                        container.style.overflowY = 'scroll';
+                        container.style.webkitOverflowScrolling = 'touch';
+                    });
+                });
+            };
+            
+            // Set the value on resize and orientation change
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', () => {
+                // Small delay to ensure dimensions are updated after orientation change
+                setTimeout(setVH, 100);
+            });
+            
+            // Initial call
+            setVH();
+        }
+    }
+    
+    // Call the iOS fix
+    fixIOSViewportHeight();
 }); 
