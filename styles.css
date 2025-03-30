@@ -1427,19 +1427,40 @@ footer .logo img {
         border-radius: 8px !important;
     }
     
-    .scene2 .cenvoy-window > div div[style*="flex-grow: 1"] > div {
-        margin-bottom: 0.7rem !important;
+    /* Make text much smaller for iOS/mobile */
+    .scene2 .cenvoy-window p,
+    .scene2 .cenvoy-window div,
+    .scene2 .cenvoy-window ul,
+    .scene2 .cenvoy-window li,
+    .scene2 .cenvoy-window strong {
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.3rem !important;
+    }
+    
+    /* Reduce spacing between sections */
+    .scene2 .cenvoy-window div[style*="margin-bottom: 15px"] {
+        margin-bottom: 6px !important;
+    }
+    
+    /* Reduce padding to fit more content */
+    .scene2 .cenvoy-window div[style*="flex-grow: 1"] {
+        padding: 0.5rem !important;
+    }
+    
+    .scene2 .cenvoy-window div[style*="padding: 15px 20px"] {
+        padding: 8px 12px !important;
     }
     
     .scene2 .cenvoy-window div[style*="width: 32px"] {
-        width: 28px !important;
-        height: 28px !important;
-        min-width: 28px !important;
+        width: 24px !important;
+        height: 24px !important;
+        min-width: 24px !important;
     }
     
     .scene2 .cenvoy-window ul {
-        padding-left: 1.2rem !important;
-        margin-top: 5px !important;
+        padding-left: 1rem !important;
+        margin-top: 3px !important;
     }
     
     /* Scene 5 - Cenvoy window on iPhone */
@@ -1452,19 +1473,38 @@ footer .logo img {
         border-radius: 8px !important;
     }
     
-    .scene5 #chat-container {
-        overflow-y: auto !important;
+    /* Much smaller text for chat bubbles */
+    .scene5 .chat-bubble p,
+    .scene5 .chat-bubble div,
+    .scene5 .chat-bubble span,
+    .scene5 .chat-bubble ul,
+    .scene5 .chat-bubble ol,
+    .scene5 .chat-bubble li,
+    .scene5 .chat-bubble strong {
+        font-size: 0.65rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0.25rem !important;
     }
     
+    /* Further reduce list indentation */
     .scene5 .chat-bubble ol,
     .scene5 .chat-bubble ul {
-        padding-left: 1.2rem !important;
-        margin-top: 5px !important;
+        padding-left: 0.8rem !important;
+        margin-top: 3px !important;
+        margin-bottom: 3px !important;
     }
     
     .scene5 .chat-bubble li {
-        font-size: 0.8rem !important;
-        margin-bottom: 0.2rem !important;
+        margin-bottom: 0.15rem !important;
+    }
+    
+    /* Reduce padding in chat bubbles */
+    .scene5 .chat-bubble,
+    .scene5 .interviewer-message,
+    .scene5 .interviewee-message {
+        max-width: 90% !important;
+        padding: 0.4rem 0.5rem !important;
+        margin-bottom: 0.4rem !important;
     }
     
     /* Improve other scene content for smaller screens */
@@ -1494,28 +1534,47 @@ footer .logo img {
     }
 }
 
-/* iPhone SE and other small iPhones */
+/* Additional iPhone-specific fixes for Cenvoy window */
+@media (max-width: 480px) {
+    /* Improve contrast and readability of text */
+    .scene2 .cenvoy-window p,
+    .scene5 .cenvoy-window p {
+        color: #000 !important;
+        font-size: 0.65rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Make headings smaller but still visible */
+    .scene2 .cenvoy-window strong,
+    .scene5 .cenvoy-window strong {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Further reduce spacing in nested lists */
+    .scene5 .cenvoy-window .chat-bubble li > ul,
+    .scene5 .cenvoy-window .chat-bubble li > ol {
+        margin-top: 0 !important;
+        padding-left: 0.7rem !important;
+    }
+}
+
+/* iPhone SE and other small iPhones - make text even smaller */
 @media (max-width: 375px) {
-    .scene2 .cenvoy-window,
-    .scene5 .cenvoy-window {
-        height: 65vh !important;
-        transform: translate(-50%, -50%) scale(0.9) !important;
-    }
-    
-    .scene-animation {
-        min-height: 25vh !important;
-    }
-    
-    .scene-narration p {
-        font-size: 0.8rem !important;
-    }
-    
-    .scene-title {
-        font-size: 0.85rem !important;
-    }
-    
-    .scene-selector {
-        padding: 0.8rem 0.5rem !important;
+    .scene2 .cenvoy-window p,
+    .scene2 .cenvoy-window div,
+    .scene2 .cenvoy-window ul,
+    .scene2 .cenvoy-window li,
+    .scene2 .cenvoy-window strong,
+    .scene5 .chat-bubble p,
+    .scene5 .chat-bubble div,
+    .scene5 .chat-bubble span,
+    .scene5 .chat-bubble ul,
+    .scene5 .chat-bubble ol,
+    .scene5 .chat-bubble li,
+    .scene5 .chat-bubble strong {
+        font-size: 0.6rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0.2rem !important;
     }
 }
 
@@ -1581,8 +1640,8 @@ footer .logo img {
     .scene2 .cenvoy-window p,
     .scene5 .cenvoy-window p {
         color: #000 !important;
-        font-size: 0.85rem !important;
-        line-height: 1.4 !important;
+        font-size: 0.65rem !important;
+        line-height: 1.2 !important;
     }
     
     /* Fix for extra space at bottom of scene animation */
@@ -1617,6 +1676,15 @@ footer .logo img {
     .scene5 .cenvoy-window {
         height: calc(var(--vh, 1vh) * 55) !important;
         max-height: calc(var(--vh, 1vh) * 60) !important;
+        overflow: hidden !important;
+    }
+    
+    /* Ensure the chat content area is properly scrollable on iOS */
+    .scene2 .cenvoy-window div[style*="flex-grow: 1"],
+    .scene5 .cenvoy-window #chat-container {
+        max-height: calc(var(--vh, 1vh) * 40) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
     }
     
     .fullscreen-mode .scene-animation {
@@ -1634,6 +1702,24 @@ footer .logo img {
             height: calc(var(--vh, 1vh) * 65) !important;
             width: 80% !important;
             max-width: 90% !important;
+        }
+        
+        /* Scale down text even more in landscape mode */
+        .scene2 .cenvoy-window p,
+        .scene2 .cenvoy-window div,
+        .scene2 .cenvoy-window ul,
+        .scene2 .cenvoy-window li,
+        .scene2 .cenvoy-window strong,
+        .scene5 .chat-bubble p,
+        .scene5 .chat-bubble div,
+        .scene5 .chat-bubble span,
+        .scene5 .chat-bubble ul,
+        .scene5 .chat-bubble ol,
+        .scene5 .chat-bubble li,
+        .scene5 .chat-bubble strong {
+            font-size: 0.55rem !important;
+            line-height: 1 !important;
+            margin-bottom: 0.15rem !important;
         }
     }
 }

@@ -1678,6 +1678,24 @@ WebSockets / REST
                     contentContainers.forEach(container => {
                         container.style.overflowY = 'scroll';
                         container.style.webkitOverflowScrolling = 'touch';
+                        container.style.maxHeight = `calc(var(--vh, 1vh) * 40)`;
+                    });
+                    
+                    // Ensure text is very small for better fit
+                    const textElements = window.querySelectorAll('p, div, span, ul, ol, li, strong');
+                    textElements.forEach(el => {
+                        // Skip elements that are more structural/containers
+                        if (el.children.length > 0 && 
+                            (el.tagName !== 'LI' && 
+                             !el.classList.contains('chat-bubble'))) {
+                            return;
+                        }
+                        
+                        // Apply tiny text
+                        const isLandscape = window.innerWidth > window.innerHeight;
+                        el.style.fontSize = isLandscape ? '0.55rem' : '0.65rem';
+                        el.style.lineHeight = isLandscape ? '1' : '1.2';
+                        el.style.marginBottom = isLandscape ? '0.15rem' : '0.2rem';
                     });
                 });
             };
